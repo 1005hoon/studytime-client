@@ -15,17 +15,17 @@ const LoginFormContainer: React.FC<LoginFormContainerProps> = (props) => {
 
   useEffect(() => {
     isUserLoggedIn();
-
-    if (!loading && data.id) {
-      navigate('/');
-    }
-  }, [loading]);
+  }, []);
 
   useEffect(() => {
-    if (!loading && !data.id) {
+    if (!loading && data.id === 0) {
       alert('관리자 권한이 없습니다. 담당자에게 요청 해주세요');
     }
-  }, [error]);
+
+    if (!loading && data.id !== 0) {
+      navigate('/');
+    }
+  }, [data, loading]);
 
   return (
     <LoginForm>
