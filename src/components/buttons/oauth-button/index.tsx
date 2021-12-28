@@ -1,7 +1,7 @@
 import React from 'react';
 import { Btn, BtnLogo, BtnText } from './styles';
 import KakaoLogo from '../../../assets/images/kakaotalk-logo.png';
-import GoogleLogo from '../../../assets/images/google-logo.png';
+import GoogleLogo from '../../../assets/images/google-logo.svg';
 
 export interface OAuthButtonProps {
   provider: '카카오' | '구글';

@@ -1,14 +1,13 @@
 import React from 'react';
-import OAuthButton from '../../components/buttons/oauth-button';
+import LoginFormContainer from '../../container/login/LoginFormContainer';
 
 interface LoginPageProps {}
 
 const LoginPage: React.FC<LoginPageProps> = (props) => {
   return (
-    <div>
-      <OAuthButton provider='구글' />
-      <OAuthButton provider='카카오' />
-    </div>
+    <>
+      <LoginFormContainer />
+    </>
   );
 };
 
