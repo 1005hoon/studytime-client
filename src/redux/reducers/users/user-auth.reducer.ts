@@ -13,7 +13,7 @@ const initialState: InitialState<IUser> = {
     email: '',
     is_admin: 0,
     thumbnail: '',
-  },
+  } as IUser,
 };
 
 const reducer = (state = initialState, action: UserAuthAction) => {
