@@ -4,7 +4,7 @@ import { UserAuthAction } from '../../actions';
 import { InitialState } from '../interfaces/initial-state.interface';
 
 const initialState: InitialState<IUser> = {
-  loading: false,
+  loading: true,
   error: null,
   data: {
     id: 0,
@@ -34,6 +34,24 @@ const reducer = (state = initialState, action: UserAuthAction) => {
         ...state,
         loading: false,
         data: action.payload,
+      };
+    case UserAuthActionType.AUTHENTICATE_USER:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case UserAuthActionType.AUTHENTICATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+      };
+    case UserAuthActionType.AUTHENTICATE_USER_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     case UserAuthActionType.LOGOUT_USER:
       return {

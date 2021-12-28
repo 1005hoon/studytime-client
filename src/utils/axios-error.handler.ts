@@ -5,6 +5,7 @@ export const axiosErrorHandler = (e: AxiosError) => {
 
   if (e.response) {
     // Request made and server responded
+
     message = e.response.data.message;
   } else if (e.request) {
     // The request was made but no response was received

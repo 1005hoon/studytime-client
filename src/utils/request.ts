@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, Method } from 'axios';
 
-const axiosInstance = axios.create({
+const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
   withCredentials: true,
 });
@@ -11,7 +11,7 @@ const request = <T>(
   params?: any,
   data?: any
 ): Promise<AxiosResponse<T>> =>
-  axiosInstance.request<T>({
+  instance.request<T>({
     method,
     url,
     params,

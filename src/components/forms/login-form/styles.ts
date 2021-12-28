@@ -17,7 +17,7 @@ export const FormLogo = styled.div`
   margin-bottom: 4rem;
 `;
 
-export const LoginFormBody = styled.form`
+export const LoginFormBody = styled.div`
   padding: 4rem 8rem;
   display: flex;
   flex-direction: column;

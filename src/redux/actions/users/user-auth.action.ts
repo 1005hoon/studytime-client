@@ -15,6 +15,20 @@ interface IUserLoginErrorAction {
   payload: string;
 }
 
+interface IUserLoggedIn {
+  type: UserAuthActionType.AUTHENTICATE_USER;
+}
+
+interface IUserLoggedInSuccess {
+  type: UserAuthActionType.AUTHENTICATE_USER_SUCCESS;
+  payload: IUser;
+}
+
+interface IUserLoggedInError {
+  type: UserAuthActionType.AUTHENTICATE_USER_ERROR;
+  payload: string;
+}
+
 interface IUserLogoutAction {
   type: UserAuthActionType.LOGOUT_USER;
 }
@@ -34,4 +48,7 @@ export type UserAuthAction =
   | IUserLoginSuccessAction
   | IUserLogoutAction
   | IUserLogoutErrorAction
-  | IUserLogoutSuccessAction;
+  | IUserLogoutSuccessAction
+  | IUserLoggedIn
+  | IUserLoggedInError
+  | IUserLoggedInSuccess;
