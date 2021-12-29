@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 export const StyledSidebar = styled.aside`
-  width: 250px;
+  min-width: 250px;
   background-color: #0d0d0d;
   height: 100vh;
   display: flex;
@@ -13,8 +13,9 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 55px;
+  min-height: 55px;
   border-bottom: 1px solid #31363e;
+  border-right: 1px solid #31363e;
   margin-bottom: 20px;
   h1 {
     font-size: 18px;
@@ -47,7 +48,7 @@ export const StyledLink = styled(NavLink).attrs({
 `;
 
 export const StyledFooter = styled.footer`
-  height: 55px;
+  min-height: 55px;
   border-top: 1px solid #31363e;
   display: flex;
   justify-content: center;

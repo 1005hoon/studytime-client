@@ -4,7 +4,6 @@ import Sidebar from '../../components/sidebar';
 interface SidebarContainerProps {}
 
 const SidebarContainer: React.FC<SidebarContainerProps> = (props) => {
-  const routes = [];
   return (
     <Sidebar>
       <Sidebar.Header />
