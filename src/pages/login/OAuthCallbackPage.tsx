@@ -20,6 +20,7 @@ const OAuthCallbackPage: React.FC<OAuthCallbackPageProps> = (props) => {
     if (!loading && data.id !== 0) {
       navigate('/');
     } else if (!loading && error) {
+      alert(error);
       navigate('/login');
     }
   }, [data.id, error]);

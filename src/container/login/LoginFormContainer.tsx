@@ -11,21 +11,14 @@ interface LoginFormContainerProps {}
 const LoginFormContainer: React.FC<LoginFormContainerProps> = (props) => {
   const { onUserLogin, isUserLoggedIn } = useActions();
   const navigate = useNavigate();
-  const { error, loading, data } = useTypedSelector((state) => state.userAuth);
+  const { loading, data } = useTypedSelector((state) => state.userAuth);
 
   useEffect(() => {
     isUserLoggedIn();
-  }, []);
-
-  useEffect(() => {
-    if (!loading && data.id === 0) {
-      alert('관리자 권한이 없습니다. 담당자에게 요청 해주세요');
-    }
-
     if (!loading && data.id !== 0) {
       navigate('/');
     }
-  }, [data, loading]);
+  }, [data]);
 
   return (
     <LoginForm>
