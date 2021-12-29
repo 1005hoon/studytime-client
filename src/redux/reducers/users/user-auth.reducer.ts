@@ -20,42 +20,42 @@ const reducer = (state = initialState, action: UserAuthAction) => {
   switch (action.type) {
     case UserAuthActionType.LOGIN_USER:
       return {
-        ...state,
+        ...initialState,
         loading: true,
       };
     case UserAuthActionType.LOGIN_USER_ERROR:
       return {
-        ...state,
+        ...initialState,
         loading: false,
         error: action.payload,
       };
     case UserAuthActionType.LOGIN_USER_SUCCESS:
       return {
-        ...state,
+        ...initialState,
         loading: false,
         data: action.payload,
       };
     case UserAuthActionType.AUTHENTICATE_USER:
       return {
-        ...state,
+        ...initialState,
         loading: true,
       };
 
     case UserAuthActionType.AUTHENTICATE_USER_SUCCESS:
       return {
-        ...state,
+        ...initialState,
         loading: false,
         data: action.payload,
       };
     case UserAuthActionType.AUTHENTICATE_USER_ERROR:
       return {
-        ...state,
+        ...initialState,
         loading: false,
         error: action.payload,
       };
     case UserAuthActionType.LOGOUT_USER:
       return {
-        ...state,
+        ...initialState,
         loading: true,
       };
     case UserAuthActionType.LOGOUT_USER_SUCCESS:

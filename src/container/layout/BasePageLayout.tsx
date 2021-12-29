@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PageLayout from '../../components/page-layout';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
+import SidebarContainer from './SidebarContainer';
 
 interface BasePageLayoutProps {}
 
@@ -24,9 +26,10 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
   }, [data, loading]);
 
   return (
-    <div>
-      <h1>홈페이지</h1>
-    </div>
+    <PageLayout>
+      <SidebarContainer />
+      {props.children}
+    </PageLayout>
   );
 };
 
