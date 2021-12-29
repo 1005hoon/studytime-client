@@ -14,4 +14,5 @@ const PageLayout: React.FC<PageLayoutProps> & PageLayoutComposition = (
 PageLayout.Content = function PageLayoutContent({ children }) {
   return <StyledPageContent>{children}</StyledPageContent>;
 };
+
 export default PageLayout;

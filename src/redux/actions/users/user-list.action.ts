@@ -1,3 +1,4 @@
+import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { IUser } from '../../../utils/types/user.interface';
 import { UserListActionType } from '../../action-types';
 
@@ -7,7 +8,7 @@ interface IFetchUsersAction {
 
 interface IFetchUsersSuccessAction {
   type: UserListActionType.FETCH_USERS_SUCCESS;
-  payload: IUser;
+  payload: IPaginatedResult<IUser>;
 }
 
 interface IFetchUsersErrorAction {
