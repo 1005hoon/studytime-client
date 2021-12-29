@@ -2,6 +2,9 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 export const StyledSidebar = styled.aside`
+  position: fixed;
+  left: 0;
+  top: 0;
   min-width: 250px;
   background-color: #0d0d0d;
   height: 100vh;

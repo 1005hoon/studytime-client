@@ -30,7 +30,7 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
     <PageLayout>
       <SidebarContainer />
       <Navbar />
-      {props.children}
+      <PageLayout.Content>{props.children}</PageLayout.Content>
     </PageLayout>
   );
 };

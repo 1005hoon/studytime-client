@@ -1,10 +1,17 @@
 import React from 'react';
-import { StyledPage } from './styles';
+import { StyledPage, StyledPageContent } from './styles';
 
 interface PageLayoutProps {}
-
-const PageLayout: React.FC<PageLayoutProps> = (props) => {
+interface PageLayoutComposition {
+  Content: React.FC;
+}
+const PageLayout: React.FC<PageLayoutProps> & PageLayoutComposition = (
+  props
+) => {
   return <StyledPage>{props.children}</StyledPage>;
 };
 
+PageLayout.Content = function PageLayoutContent({ children }) {
+  return <StyledPageContent>{children}</StyledPageContent>;
+};
 export default PageLayout;
