@@ -26,10 +26,6 @@ const LoginFormContainer: React.FC<LoginFormContainerProps> = (props) => {
         provider={LOGIN_OPTION.KAKAO}
         onClick={() => onUserLogin(LOGIN_OPTION.KAKAO)}
       />
-      <OAuthButton
-        provider={LOGIN_OPTION.GOOGLE}
-        onClick={() => onUserLogin(LOGIN_OPTION.GOOGLE)}
-      />
     </LoginForm>
   );
 };
