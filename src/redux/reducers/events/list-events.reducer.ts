@@ -35,6 +35,8 @@ const reducer = (state = initialState, action: FetchEventsAction) => {
         loading: false,
         error: action.payload,
       };
+    default:
+      return state;
   }
 };
 
