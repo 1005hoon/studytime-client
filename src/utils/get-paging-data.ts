@@ -38,11 +38,5 @@ export const getPagingData = (
     (i) => startPage + i
   );
 
-  return {
-    currentPage: currentPage,
-    totalPages: totalPages,
-    startPage: startPage,
-    endPage: endPage,
-    pages: pages,
-  };
+  return pages;
 };

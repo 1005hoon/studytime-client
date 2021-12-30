@@ -36,11 +36,3 @@ Paging.Page = function PagingPage(props) {
 };
 
 export default Paging;
-
-/*
-
-first: offset + 1,
-last: offset + data.length,
-limit: options.limit,
-count: options.count ? await queryBuilder.getCount() : null,
-*/
