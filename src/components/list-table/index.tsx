@@ -12,7 +12,7 @@ interface ListTableProps {}
 interface ListTableComposition {
   Header: React.FC;
   Category: React.FC<ListTableCategoryProps>;
-  Row: React.FC;
+  Row: React.FC<ListTableRowProp>;
   Body: React.FC;
   Data: React.FC;
 }
@@ -36,8 +36,15 @@ ListTable.Body = function ListTableBody(props) {
   return <StyledTableBody>{props.children}</StyledTableBody>;
 };
 
+export interface ListTableRowProp {
+  onClick?: (e: any) => void;
+}
 ListTable.Row = function ListTableRow(props) {
-  return <StyledRow>{props.children}</StyledRow>;
+  return (
+    <StyledRow onClick={(e) => props.onClick && props.onClick(e)}>
+      {props.children}
+    </StyledRow>
+  );
 };
 
 ListTable.Data = function ListTableData(props) {

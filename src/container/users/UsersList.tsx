@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '../../components/avatar';
 import ListTable from '../../components/list-table';
 import PaginationResult from '../../components/pagination/result';
@@ -10,9 +11,23 @@ interface UsersListProps {
 }
 
 const UsersList: React.FC<UsersListProps> = ({ data }) => {
+  const navigate = useNavigate();
+
+  const clickHandler = (e: MouseEvent, stId: string) => {
+    const url = `/users/${stId}`;
+    if (e.metaKey || e.ctrlKey) {
+      window.open(url, '_blank');
+    } else {
+      navigate(`/users/${stId}`);
+    }
+  };
+
   const renderUserLists = () =>
     data.data.map((user) => (
-      <ListTable.Row key={user.stId}>
+      <ListTable.Row
+        key={user.stId}
+        onClick={(e) => clickHandler(e, user.stId)}
+      >
         <ListTable.Data>{user.nickname}</ListTable.Data>
         <ListTable.Data>{user.email}</ListTable.Data>
         <ListTable.Data>{user.stId}</ListTable.Data>
