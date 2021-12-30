@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
-import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
-import SearchInput from '../../components/search-input';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 import SidebarContainer from './SidebarContainer';
