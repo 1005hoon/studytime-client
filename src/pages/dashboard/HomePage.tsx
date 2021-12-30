@@ -7,7 +7,6 @@ interface HomePageProps {}
 const HomePage: React.FC<HomePageProps> = (props) => {
   return (
     <BasePageLayout>
-      <PageHeader title='대시보드'></PageHeader>
       <h1>구현중</h1>
     </BasePageLayout>
   );

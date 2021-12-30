@@ -1,16 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Avatar from '../../components/avatar';
 import ListTable from '../../components/list-table';
-import PaginationResult from '../../components/pagination/result';
 import { IPaginatedResult } from '../../utils/types/paginated-result.interface';
 import { IUser } from '../../utils/types/user.interface';
 
 interface UsersListProps {
-  data: IPaginatedResult<IUser>;
+  users: IUser[];
 }
 
-const UsersList: React.FC<UsersListProps> = ({ data }) => {
+const UsersList: React.FC<UsersListProps> = ({ users }) => {
   const navigate = useNavigate();
 
   const clickHandler = (e: MouseEvent, stId: string) => {
@@ -23,7 +21,7 @@ const UsersList: React.FC<UsersListProps> = ({ data }) => {
   };
 
   const renderUserLists = () =>
-    data.data.map((user) => (
+    users.map((user) => (
       <ListTable.Row
         key={user.stId}
         onClick={(e) => clickHandler(e, user.stId)}
@@ -38,11 +36,6 @@ const UsersList: React.FC<UsersListProps> = ({ data }) => {
     ));
   return (
     <>
-      <PaginationResult
-        first={data.first}
-        last={data.last}
-        count={data.count}
-      />
       <ListTable>
         <ListTable.Header>
           <ListTable.Row>
