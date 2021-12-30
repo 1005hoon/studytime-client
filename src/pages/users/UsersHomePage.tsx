@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
@@ -18,6 +18,8 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
   const { loading, data, error } = useTypedSelector((state) => state.userList);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState<number[]>([]);
+  const [search, setSearch] = useState('');
+  const searchRef = useRef<HTMLInputElement | null>(null);
   const location = useLocation();
 
   const setPagingData = (count: number, currentPage: number) => {
@@ -40,10 +42,18 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
     setPagingData(data.count, currentPage);
   }, [data]);
 
+  useEffect(() => {
+    searchRef.current?.focus();
+  }, []);
+
   return (
-    <BasePageLayout title='사용자 관리' search={SearchInput}>
+    <BasePageLayout title='사용자 관리'>
       <PageHeader title='사용자 관리'>
-        <SearchInput />
+        <SearchInput
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          ref={searchRef}
+        />
       </PageHeader>
       <PageLayout.Content>
         <PaginationResult
