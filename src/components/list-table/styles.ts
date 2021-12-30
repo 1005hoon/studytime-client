@@ -38,7 +38,7 @@ export const StyledRow = styled.tr`
 
 export const StyledData = styled.td`
   background-color: #2c3037;
-  padding: 18px 0;
+  padding: 22px 0;
   font-size: 14px;
   text-align: center;
 
