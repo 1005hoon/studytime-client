@@ -3,6 +3,7 @@ export const __PROD__ = process.env.NODE_ENV === 'production';
 export enum ROUTES {
   HOME = '',
   USERS = 'users',
+  USERS_DETAIL = 'users/:stId',
   LOGIN = 'login',
   OAUTH = 'oauth',
 }
