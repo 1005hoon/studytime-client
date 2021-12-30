@@ -6,7 +6,17 @@ export const StyledPageHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 56px;
+  width: 100%;
+`;
+
+export const StyledPageHeaderContainer = styled.div`
+  margin: 0 auto;
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const StyledPageHeaderTitle = styled.h2`
