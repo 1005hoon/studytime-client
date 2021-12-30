@@ -49,3 +49,21 @@ export const onSearchUserWithKeyword =
       });
     }
   };
+
+export const onSearchUserWithStId =
+  (stId: string) => async (dispatch: Dispatch<UserFetchAction>) => {
+    dispatch({ type: UserSearchActionType.FETCH_USER_BY_STID });
+
+    try {
+      const { data } = await request<IUser>('GET', '/users', { st_id: stId });
+      dispatch({
+        type: UserSearchActionType.FETCH_USER_BY_STID_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: UserSearchActionType.FETCH_USER_BY_STID_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };

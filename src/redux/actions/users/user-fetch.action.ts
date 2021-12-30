@@ -16,6 +16,20 @@ interface IFetchUsersErrorAction {
   payload: string;
 }
 
+interface IFetchUserBySTIdAction {
+  type: UserSearchActionType.FETCH_USER_BY_STID;
+}
+
+interface IFetchUserBySTIdSuccessAction {
+  type: UserSearchActionType.FETCH_USER_BY_STID_SUCCESS;
+  payload: IUser;
+}
+
+interface IFetchUserBySTIdErrorAction {
+  type: UserSearchActionType.FETCH_USER_BY_STID_ERROR;
+  payload: string;
+}
+
 interface ISearchUserAction {
   type: UserSearchActionType.SEARCH_USERS;
 }
@@ -31,6 +45,9 @@ interface ISearchUserErrorAction {
 }
 
 export type UserFetchAction =
+  | IFetchUserBySTIdAction
+  | IFetchUserBySTIdErrorAction
+  | IFetchUserBySTIdSuccessAction
   | IFetchUsersAction
   | IFetchUsersErrorAction
   | IFetchUsersSuccessAction
