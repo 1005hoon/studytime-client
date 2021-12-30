@@ -1,4 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  KeyboardEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
@@ -14,7 +19,7 @@ import { getPagingData } from '../../utils/get-paging-data';
 interface UsersHomePageProps {}
 
 const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
-  const { onFetchAllUsers } = useActions();
+  const { onFetchAllUsers, onSearchUserWithKeyword } = useActions();
   const { loading, data, error } = useTypedSelector((state) => state.userList);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState<number[]>([]);
@@ -27,14 +32,20 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
     setPages(() => pagingData);
   };
 
+  const onUserSearch: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === 'Enter') {
+      onSearchUserWithKeyword(search);
+    }
+  };
+
   useEffect(() => {
     const pageNumber = +location.search.split('=')[1];
 
     if (!pageNumber) {
       // 페이지 1로 사용자 정보 조회
-      onFetchAllUsers(currentPage);
+      onFetchAllUsers(currentPage, search);
     } else {
-      onFetchAllUsers(pageNumber);
+      onFetchAllUsers(pageNumber, search);
     }
   }, [location.search]);
 
@@ -53,6 +64,7 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           ref={searchRef}
+          onKeyPress={onUserSearch}
         />
       </PageHeader>
       <PageLayout.Content>
