@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListTable from '../../components/list-table';
-import { IPaginatedResult } from '../../utils/types/paginated-result.interface';
 import { IUser } from '../../utils/types/user.interface';
 
 interface UsersListProps {
