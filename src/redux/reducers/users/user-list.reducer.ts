@@ -21,18 +21,18 @@ const reducer = (state = initialState, action: UserListAction) => {
   switch (action.type) {
     case UserListActionType.FETCH_USERS:
       return {
-        ...initialState,
+        ...state,
         loading: true,
       };
     case UserListActionType.FETCH_USERS_ERROR:
       return {
-        ...initialState,
+        ...state,
         loading: false,
         error: action.payload,
       };
     case UserListActionType.FETCH_USERS_SUCCESS:
       return {
-        ...initialState,
+        ...state,
         loading: false,
         data: action.payload,
       };

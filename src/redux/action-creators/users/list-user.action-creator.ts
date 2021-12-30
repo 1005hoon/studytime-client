@@ -8,11 +8,14 @@ import { UserListActionType } from '../../action-types';
 import { UserListAction } from '../../actions/users/user-list.action';
 
 export const onFetchAllUsers =
-  () => async (dispatch: Dispatch<UserListAction>) => {
+  (page: number, filter?: any) =>
+  async (dispatch: Dispatch<UserListAction>) => {
     dispatch({ type: UserListActionType.FETCH_USERS });
 
     try {
-      const { data } = await request<IPaginatedResult<IUser>>('GET', '/users');
+      const { data } = await request<IPaginatedResult<IUser>>('GET', '/users', {
+        page,
+      });
       dispatch({ type: UserListActionType.FETCH_USERS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({

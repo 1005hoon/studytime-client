@@ -18,23 +18,25 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
   const [pages, setPages] = useState<number[]>([]);
   const location = useLocation();
 
-  useEffect(() => {
-    onFetchAllUsers();
-  }, []);
-
   const setPagingData = (count: number, currentPage: number) => {
     const pagingData = getPagingData(count, currentPage);
     setPages(() => pagingData);
   };
 
   useEffect(() => {
-    const pageNumber = location.search.split('=')[1];
+    const pageNumber = +location.search.split('=')[1];
 
     if (!pageNumber) {
       // 페이지 1로 사용자 정보 조회
-      onFetchAllUsers();
+      onFetchAllUsers(currentPage);
+    } else {
+      onFetchAllUsers(pageNumber);
     }
   }, [location.search]);
+
+  useEffect(() => {
+    setPagingData(data.count, currentPage);
+  }, [data]);
 
   return (
     <BasePageLayout title='사용자 관리'>
@@ -48,7 +50,7 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
         route='users'
         currentPage={currentPage}
         paginate={setCurrentPage}
-        pages={[1, 2, 3, 4, 5]}
+        pages={pages}
       />
     </BasePageLayout>
   );
