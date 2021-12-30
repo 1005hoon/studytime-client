@@ -8,11 +8,8 @@ const initialState: InitialState<IUser> = {
   error: null,
   data: {
     id: 0,
-    st_id: '',
-    nickname: '',
-    email: '',
-    is_admin: 0,
-    thumbnail: '',
+    stId: '',
+    isAdmin: 0,
   } as IUser,
 };
 

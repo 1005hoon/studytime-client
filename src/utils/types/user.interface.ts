@@ -1,8 +1,13 @@
 export interface IUser {
   id: number;
-  st_id: string;
+  stId: string;
   nickname: string;
   email: string;
-  is_admin: number;
+  isAdmin: number;
   thumbnail: string;
+  teamId: number;
+  dDayName: string;
+  groupId: number;
+  lastLeafName: string;
+  isActive: number;
 }

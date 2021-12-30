@@ -16,11 +16,11 @@ export const GlobalStyles = createGlobalStyle`${css`
     font-size: 62.5%;
     background-color: #282b30;
     color: #fff;
+    font-family: 'Noto Sans KR', MalgunGothic, '맑은 고딕', '돋움', Dotum,
+      AppleGothic, Sans-serif, Arial;
   }
 
   body {
-    font-family: 'Noto Sans KR', MalgunGothic, '맑은 고딕', '돋움', Dotum,
-      AppleGothic, Sans-serif, Arial;
     outline: none;
   }
 `}`;
