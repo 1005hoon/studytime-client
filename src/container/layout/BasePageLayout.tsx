@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
+import SearchInput from '../../components/search-input';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 import SidebarContainer from './SidebarContainer';
 
 interface BasePageLayoutProps {
   title?: string;
+  search?: React.FC;
 }
 
 const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
@@ -32,8 +34,7 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
     <PageLayout>
       <SidebarContainer />
       <Navbar />
-      {props.title && <PageHeader title={props.title} />}
-      <PageLayout.Content>{props.children}</PageLayout.Content>
+      {props.children}
     </PageLayout>
   );
 };

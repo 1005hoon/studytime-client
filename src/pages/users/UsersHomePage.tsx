@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import PageHeader from '../../components/page-header';
+import PageLayout from '../../components/page-layout';
 import PaginationResult from '../../components/pagination/result';
+import SearchInput from '../../components/search-input';
 import BasePageLayout from '../../container/layout/BasePageLayout';
 import Pagination from '../../container/layout/Pagination';
 import UsersList from '../../container/users/UsersList';
@@ -39,19 +41,24 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
   }, [data]);
 
   return (
-    <BasePageLayout title='사용자 관리'>
-      <PaginationResult
-        first={data.first}
-        last={data.last}
-        count={data.count}
-      />
-      <UsersList users={data.data} />
-      <Pagination
-        route='users'
-        currentPage={currentPage}
-        paginate={setCurrentPage}
-        pages={pages}
-      />
+    <BasePageLayout title='사용자 관리' search={SearchInput}>
+      <PageHeader title='사용자 관리'>
+        <SearchInput />
+      </PageHeader>
+      <PageLayout.Content>
+        <PaginationResult
+          first={data.first}
+          last={data.last}
+          count={data.count}
+        />
+        <UsersList users={data.data} />
+        <Pagination
+          route='users'
+          currentPage={currentPage}
+          paginate={setCurrentPage}
+          pages={pages}
+        />
+      </PageLayout.Content>
     </BasePageLayout>
   );
 };
