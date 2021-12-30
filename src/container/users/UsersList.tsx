@@ -31,7 +31,9 @@ const UsersList: React.FC<UsersListProps> = ({ users }) => {
         <ListTable.Data>{user.stId}</ListTable.Data>
         <ListTable.Data>{user.dDayName}</ListTable.Data>
         <ListTable.Data>{user.lastLeafName}</ListTable.Data>
-        <ListTable.Data>{user.isActive}</ListTable.Data>
+        <ListTable.Data>
+          {user.isActive === 0 ? '비활성화' : '활동중'}
+        </ListTable.Data>
       </ListTable.Row>
     ));
   return (

@@ -1,6 +1,7 @@
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { IUser } from '../../../utils/types/user.interface';
-import { UserSearchActionType } from '../../action-types';
+import { UpdateUserActionType, UserSearchActionType } from '../../action-types';
+import { UserUpdateAction } from '../../actions';
 import { UserFetchAction } from '../../actions/users/user-fetch.action';
 
 import { InitialState } from '../interfaces/initial-state.interface';
@@ -23,7 +24,10 @@ const initialState: InitialState<IUser> = {
   },
 };
 
-const reducer = (state = initialState, action: UserFetchAction) => {
+const reducer = (
+  state = initialState,
+  action: UserFetchAction | UserUpdateAction
+) => {
   switch (action.type) {
     case UserSearchActionType.FETCH_USER_BY_STID:
       return {
@@ -37,6 +41,23 @@ const reducer = (state = initialState, action: UserFetchAction) => {
         error: action.payload,
       };
     case UserSearchActionType.FETCH_USER_BY_STID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+      };
+    case UpdateUserActionType.UPDATE_USER_ADMIN_STATUS:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UpdateUserActionType.UPDATE_USER_ADMIN_STATUS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case UpdateUserActionType.UPDATE_USER_ADMIN_STATUS_SUCCESS:
       return {
         ...state,
         loading: false,
