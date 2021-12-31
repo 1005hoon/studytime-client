@@ -1,19 +1,13 @@
-import { IEvents } from '../../../utils/types/events.interface';
+import { IEventDetail } from '../../../utils/types/event-detail.interface';
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { FetchEventsActionType } from '../../action-types';
 import { FetchEventsAction } from '../../actions';
 import { InitialState } from '../interfaces/initial-state.interface';
 
-const initialState: InitialState<IPaginatedResult<IEvents>> = {
+const initialState: InitialState<IEventDetail[]> = {
   loading: true,
   error: null,
-  data: {
-    first: 0,
-    last: 0,
-    count: 0,
-    limit: 0,
-    data: [],
-  },
+  data: [],
 };
 
 const reducer = (state = initialState, action: FetchEventsAction) => {
@@ -27,6 +21,7 @@ const reducer = (state = initialState, action: FetchEventsAction) => {
       return {
         ...state,
         loading: false,
+        error: null,
         data: action.payload,
       };
     case FetchEventsActionType.FETCH_EVENT_DETAIL_ERROR:

@@ -3,7 +3,8 @@ export interface IEventDetail {
   eventId: number;
   type: string | null;
   img_url: string;
-  url: string | null;
+  url1: string | null;
+  url2: string | null;
   description: string;
   createdAt: Date;
   isDeleted: number;

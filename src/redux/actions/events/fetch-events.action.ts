@@ -1,3 +1,4 @@
+import { IEventDetail } from '../../../utils/types/event-detail.interface';
 import { IEvents } from '../../../utils/types/events.interface';
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { FetchEventsActionType } from '../../action-types';
@@ -22,7 +23,7 @@ interface IFetchEventDetailsAction {
 
 interface IFetchEventDetailsSuccessAction {
   type: FetchEventsActionType.FETCH_EVENT_DETAIL_SUCCESS;
-  payload: IPaginatedResult<IEvents>;
+  payload: IEventDetail[];
 }
 
 interface IFetchEventDetailsErrorAction {

@@ -10,6 +10,7 @@ import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
 import PaginationResult from '../../components/pagination/result';
 import SearchInput from '../../components/search-input';
+import EventDetailsList from '../../container/events/EventDetailsList';
 import EventsList from '../../container/events/EventsList';
 import BasePageLayout from '../../container/layout/BasePageLayout';
 import Pagination from '../../container/layout/Pagination';
@@ -23,9 +24,15 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
   const { onFetchAllEvents, onFetchEventDetailsByEventId } = useActions();
   const {
     data: events,
-    loading,
-    error,
+    loading: eventLoading,
+    error: eventError,
   } = useTypedSelector((state) => state.eventList);
+  const {
+    data: eventDetails,
+    loading: detailsLoading,
+    error: detailsError,
+  } = useTypedSelector((state) => state.eventDetailsList);
+
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState<number[]>([]);
@@ -82,7 +89,7 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
           <RoundButton primary>이벤트 생성</RoundButton>
         </PageLayout.Row>
         <PageLayout.Row>
-          <PageLayout.Column>
+          <PageLayout.Column title='이벤트 조회'>
             <EventsList
               events={events.data}
               onClick={(id: number) => setSelectedEvent(id)}
@@ -94,12 +101,15 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
               pages={pages}
             />
           </PageLayout.Column>
-          <PageLayout.Column
-            title={
-              events.data.find((event) => event.id === selectedEvent)?.name ||
-              '이벤트를 선택해주세요'
-            }
-          ></PageLayout.Column>
+          <PageLayout.Column title='세부사항 조회'>
+            <EventDetailsList
+              selectedEvent={
+                events.data.find((event) => event.id === selectedEvent)?.name
+              }
+              details={eventDetails}
+              onClick={console.log}
+            />
+          </PageLayout.Column>
         </PageLayout.Row>
       </PageLayout.Content>
     </BasePageLayout>
