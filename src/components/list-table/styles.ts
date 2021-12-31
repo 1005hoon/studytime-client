@@ -6,6 +6,7 @@ export const StyledListTableContainer = styled.div`
   width: 100%;
   min-height: 770px;
 `;
+
 export const StyledListTable = styled.table`
   width: 100%;
   height: 100%;
