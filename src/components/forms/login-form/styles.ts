@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import DGBYLogo from '../../../logo.svg';
+
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
