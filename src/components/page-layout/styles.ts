@@ -23,11 +23,16 @@ export const StyledContentContainer = styled.div`
 export const StyledLayoutRow = styled.div`
   display: flex;
   justify-content: space-between;
-
   gap: 15px;
   flex-wrap: wrap;
 `;
 
 export const StyledLayoutColumn = styled.div`
   flex: 1;
+`;
+
+export const StyledLayoutColumnTitle = styled.h2`
+  color: #657177;
+  font-size: 18px;
+  font-weight: 500;
 `;

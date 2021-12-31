@@ -20,9 +20,9 @@ export const StyledCategory = styled.th<ListTableCategoryProps>`
   letter-spacing: -0.35px;
   font-weight: 300;
   padding: 17px 0;
-  font-weight: 500;
+  font-weight: 300;
   width: ${({ width }) => (width ? width : 'auto')};
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 export const StyledTableBody = styled.tbody`
