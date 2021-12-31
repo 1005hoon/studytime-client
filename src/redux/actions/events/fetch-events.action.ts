@@ -16,7 +16,24 @@ interface IFetchEventsErrorAction {
   payload: string;
 }
 
+interface IFetchEventDetailsAction {
+  type: FetchEventsActionType.FETCH_EVENT_DETAIL;
+}
+
+interface IFetchEventDetailsSuccessAction {
+  type: FetchEventsActionType.FETCH_EVENT_DETAIL_SUCCESS;
+  payload: IPaginatedResult<IEvents>;
+}
+
+interface IFetchEventDetailsErrorAction {
+  type: FetchEventsActionType.FETCH_EVENT_DETAIL_ERROR;
+  payload: string;
+}
+
 export type FetchEventsAction =
+  | IFetchEventDetailsAction
+  | IFetchEventDetailsErrorAction
+  | IFetchEventDetailsSuccessAction
   | IFetchEventsAction
   | IFetchEventsErrorAction
   | IFetchEventsSuccessAction;

@@ -18,24 +18,23 @@ const initialState: InitialState<IPaginatedResult<IEvents>> = {
 
 const reducer = (state = initialState, action: FetchEventsAction) => {
   switch (action.type) {
-    case FetchEventsActionType.FETCH_EVENTS:
+    case FetchEventsActionType.FETCH_EVENT_DETAIL:
       return {
         ...state,
         loading: true,
       };
-    case FetchEventsActionType.FETCH_EVENTS_SUCCESS:
+    case FetchEventsActionType.FETCH_EVENT_DETAIL_SUCCESS:
       return {
         ...state,
         loading: false,
         data: action.payload,
       };
-    case FetchEventsActionType.FETCH_EVENTS_ERROR:
+    case FetchEventsActionType.FETCH_EVENT_DETAIL_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-
     default:
       return state;
   }

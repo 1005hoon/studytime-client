@@ -21,10 +21,10 @@ interface UsersHomePageProps {}
 const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
   const { onFetchAllUsers, onSearchUserWithKeyword } = useActions();
   const { loading, data, error } = useTypedSelector((state) => state.userList);
+  const searchRef = useRef<HTMLInputElement | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState<number[]>([]);
   const [search, setSearch] = useState('');
-  const searchRef = useRef<HTMLInputElement | null>(null);
   const location = useLocation();
 
   const setPagingData = (count: number, currentPage: number) => {

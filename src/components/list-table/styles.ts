@@ -4,6 +4,7 @@ import { ListTableCategoryProps } from '.';
 export const StyledListTableContainer = styled.div`
   display: table;
   width: 100%;
+  min-height: 770px;
 `;
 export const StyledListTable = styled.table`
   width: 100%;
