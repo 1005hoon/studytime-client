@@ -42,9 +42,9 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
     setPages(() => pagingData);
   };
 
-  const onUserSearch: KeyboardEventHandler<HTMLInputElement> = (e) => {
+  const onEventSearch: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
-      // onSearchUserWithKeyword(search);
+      onFetchAllEvents(currentPage, search);
     }
   };
 
@@ -94,7 +94,12 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
   return (
     <BasePageLayout>
       <PageHeader title='이벤트 관리'>
-        <SearchInput ref={searchRef} />
+        <SearchInput
+          ref={searchRef}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyPress={onEventSearch}
+        />
       </PageHeader>
       <PageLayout.Content>
         <PageLayout.Row>

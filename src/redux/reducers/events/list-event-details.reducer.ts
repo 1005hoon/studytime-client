@@ -4,7 +4,7 @@ import { FetchEventsAction } from '../../actions';
 import { InitialState } from '../interfaces/initial-state.interface';
 
 const initialState: InitialState<IEventDetail[]> = {
-  loading: false,
+  loading: true,
   error: null,
   data: [],
 };
