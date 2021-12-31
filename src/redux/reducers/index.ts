@@ -2,12 +2,14 @@ import { combineReducers } from 'redux';
 
 import eventsListReducer from './events/list-events.reducer';
 import eventDetailsListReducer from './events/list-event-details.reducer';
+import eventWithDetailListReducer from './events/list-event-details.reducer';
 import userAuthReducer from './users/user-auth.reducer';
 import userListReducer from './users/user-fetch.reducer';
 import userDetailReducer from './users/user-detail.reducer';
 
 const reducer = combineReducers({
   eventList: eventsListReducer,
+  eventListWithDetail: eventWithDetailListReducer,
   eventDetailsList: eventDetailsListReducer,
   userAuth: userAuthReducer,
   userList: userListReducer,

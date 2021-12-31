@@ -1,11 +1,10 @@
 import { IEventDetail } from '../../../utils/types/event-detail.interface';
-import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { FetchEventsActionType } from '../../action-types';
 import { FetchEventsAction } from '../../actions';
 import { InitialState } from '../interfaces/initial-state.interface';
 
 const initialState: InitialState<IEventDetail[]> = {
-  loading: true,
+  loading: false,
   error: null,
   data: [],
 };

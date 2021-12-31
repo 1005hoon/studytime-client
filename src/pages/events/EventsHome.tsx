@@ -21,12 +21,14 @@ import { IEvents } from '../../utils/types/events.interface';
 interface EventsHomeProps {}
 
 const EventsHome: React.FC<EventsHomeProps> = (props) => {
-  const { onFetchAllEvents, onFetchEventDetailsByEventId } = useActions();
+  const { onFetchAllEvents, onCreateEvent } = useActions();
   const {
     data: events,
     loading: eventLoading,
     error: eventError,
   } = useTypedSelector((state) => state.eventList);
+  const { loading: createEventLoading, error: createEventError } =
+    useTypedSelector((state) => state.eventListWithDetail);
   const navigate = useNavigate();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,12 +63,15 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
     }
 
     if (window.confirm(`${event.name}을 생성할까요?`)) {
+      onCreateEvent(event);
+      window.location.reload();
     }
   };
 
   const onSelectEvent = (eventId: number) => {
     navigate(`/events/${eventId}`);
   };
+
   useEffect(() => {
     const pageNumber = +location.search.split('=')[1];
 
