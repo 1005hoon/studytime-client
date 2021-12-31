@@ -3,7 +3,6 @@ import { Dispatch } from 'redux';
 import { axiosErrorHandler } from '../../../utils/axios-error.handler';
 import request from '../../../utils/request';
 import { IEventDetail } from '../../../utils/types/event-detail.interface';
-import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { FetchEventsActionType } from '../../action-types';
 import { FetchEventsAction } from '../../actions';
 
