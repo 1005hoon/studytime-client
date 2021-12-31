@@ -15,6 +15,19 @@ export const StyledPageContent = styled.main`
 
 export const StyledContentContainer = styled.div`
   max-width: 1400px;
+  min-width: 1100px;
   width: 100%;
   margin: 0 auto;
+`;
+
+export const StyledLayoutRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  gap: 15px;
+  flex-wrap: wrap;
+`;
+
+export const StyledLayoutColumn = styled.div`
+  flex: 1;
 `;

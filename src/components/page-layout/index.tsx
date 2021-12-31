@@ -1,6 +1,8 @@
 import React from 'react';
 import {
   StyledContentContainer,
+  StyledLayoutColumn,
+  StyledLayoutRow,
   StyledPage,
   StyledPageContent,
 } from './styles';
@@ -8,6 +10,8 @@ import {
 interface PageLayoutProps {}
 interface PageLayoutComposition {
   Content: React.FC;
+  Row: React.FC;
+  Column: React.FC;
 }
 const PageLayout: React.FC<PageLayoutProps> & PageLayoutComposition = (
   props
@@ -21,6 +25,14 @@ PageLayout.Content = function PageLayoutContent({ children }) {
       <StyledContentContainer>{children}</StyledContentContainer>
     </StyledPageContent>
   );
+};
+
+PageLayout.Row = function PageLayoutRow(props) {
+  return <StyledLayoutRow>{props.children}</StyledLayoutRow>;
+};
+
+PageLayout.Column = function PageLayoutColumn(props) {
+  return <StyledLayoutColumn>{props.children}</StyledLayoutColumn>;
 };
 
 export default PageLayout;
