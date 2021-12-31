@@ -4,19 +4,19 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useLocation } from 'react-router-dom';
-import RoundButton from '../../components/buttons/round-button';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
 import PaginationResult from '../../components/pagination/result';
 import SearchInput from '../../components/search-input';
-import EventDetailsList from '../../container/events/EventDetailsList';
+import CreateEventForm from '../../container/events/CreateEventForm';
 import EventsList from '../../container/events/EventsList';
 import BasePageLayout from '../../container/layout/BasePageLayout';
 import Pagination from '../../container/layout/Pagination';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { getPagingData } from '../../utils/get-paging-data';
+import { IEvents } from '../../utils/types/events.interface';
 
 interface EventsHomeProps {}
 
@@ -27,17 +27,12 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
     loading: eventLoading,
     error: eventError,
   } = useTypedSelector((state) => state.eventList);
-  const {
-    data: eventDetails,
-    loading: detailsLoading,
-    error: detailsError,
-  } = useTypedSelector((state) => state.eventDetailsList);
-
+  const navigate = useNavigate();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState<number[]>([]);
   const [search, setSearch] = useState('');
-  const [selectedEvent, setSelectedEvent] = useState(0);
+  const [event, setEvent] = useState<Partial<IEvents>>({ name: '' });
   const location = useLocation();
 
   const setPagingData = (count: number, currentPage: number) => {
@@ -51,6 +46,27 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
     }
   };
 
+  const onChangeEventFormInput: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ) => {
+    const { name, value } = e.target;
+    setEvent((e) => ({ ...e, [name]: value }));
+  };
+
+  const onCreateFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    if (!event.name?.length) {
+      alert('이벤트 이름을 입력해주세요');
+      return;
+    }
+
+    if (window.confirm(`${event.name}을 생성할까요?`)) {
+    }
+  };
+
+  const onSelectEvent = (eventId: number) => {
+    navigate(`/events/${eventId}`);
+  };
   useEffect(() => {
     const pageNumber = +location.search.split('=')[1];
 
@@ -65,10 +81,6 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
   useEffect(() => {
     setPagingData(events.count, currentPage);
   }, [events]);
-
-  useEffect(() => {
-    onFetchEventDetailsByEventId(selectedEvent);
-  }, [selectedEvent]);
 
   useEffect(() => {
     searchRef.current?.focus();
@@ -86,14 +98,10 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
             last={events.last}
             count={events.count}
           />
-          <RoundButton primary>이벤트 생성</RoundButton>
         </PageLayout.Row>
         <PageLayout.Row>
           <PageLayout.Column title='이벤트 조회'>
-            <EventsList
-              events={events.data}
-              onClick={(id: number) => setSelectedEvent(id)}
-            />
+            <EventsList events={events.data} onClick={onSelectEvent} />
             <Pagination
               route='events'
               currentPage={currentPage}
@@ -101,13 +109,11 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
               pages={pages}
             />
           </PageLayout.Column>
-          <PageLayout.Column title='세부사항 조회'>
-            <EventDetailsList
-              selectedEvent={
-                events.data.find((event) => event.id === selectedEvent)?.name
-              }
-              details={eventDetails}
-              onClick={console.log}
+          <PageLayout.Column title='새로운 이벤트 생성'>
+            <CreateEventForm
+              event={event}
+              onChange={onChangeEventFormInput}
+              onSubmit={onCreateFormSubmit}
             />
           </PageLayout.Column>
         </PageLayout.Row>

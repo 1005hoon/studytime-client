@@ -5,7 +5,9 @@ import {
   StyledInputFormGroup,
 } from './styles';
 
-interface InputFormProps {}
+interface InputFormProps {
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
+}
 interface InputFormComposition {
   Group: React.FC;
 }
@@ -13,7 +15,9 @@ interface InputFormComposition {
 const InputForm: React.FC<InputFormProps> & InputFormComposition = (props) => {
   return (
     <StyledInputFormContainer>
-      <StyledInputFormBody>{props.children}</StyledInputFormBody>
+      <StyledInputFormBody onSubmit={props?.onSubmit}>
+        {props.children}
+      </StyledInputFormBody>
     </StyledInputFormContainer>
   );
 };

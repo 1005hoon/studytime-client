@@ -11,7 +11,7 @@ import {
 interface PageLayoutProps {}
 interface PageLayoutComposition {
   Content: React.FC;
-  Row: React.FC;
+  Row: React.FC<PageLayoutColumnRowProps>;
   Column: React.FC<PageLayoutColumnProps>;
 }
 const PageLayout: React.FC<PageLayoutProps> & PageLayoutComposition = (
@@ -28,8 +28,13 @@ PageLayout.Content = function PageLayoutContent({ children }) {
   );
 };
 
+export interface PageLayoutColumnRowProps {
+  justify?: 'flex-start' | 'flex-end' | 'space-between';
+}
 PageLayout.Row = function PageLayoutRow(props) {
-  return <StyledLayoutRow>{props.children}</StyledLayoutRow>;
+  return (
+    <StyledLayoutRow justify={props.justify}>{props.children}</StyledLayoutRow>
+  );
 };
 
 interface PageLayoutColumnProps {

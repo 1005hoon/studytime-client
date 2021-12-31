@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { PageLayoutColumnRowProps } from '.';
 
 export const StyledPage = styled.div`
   margin-left: 250px;
@@ -20,9 +21,9 @@ export const StyledContentContainer = styled.div`
   margin: 0 auto;
 `;
 
-export const StyledLayoutRow = styled.div`
+export const StyledLayoutRow = styled.div<PageLayoutColumnRowProps>`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) => props.justify || 'space-between'};
   gap: 15px;
   flex-wrap: wrap;
 `;
