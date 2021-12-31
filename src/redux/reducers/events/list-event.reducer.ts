@@ -7,10 +7,7 @@ const initialState: InitialState<IEventWithDetails> = {
   loading: true,
   error: null,
   data: {
-    id: 0,
-    name: '',
-    createdAt: new Date(),
-    isDeleted: 0,
+    event: { id: 0, name: '', createdAt: new Date(), isDeleted: 0 },
     details: [],
   },
 };

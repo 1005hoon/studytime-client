@@ -7,6 +7,7 @@ export interface IEvents {
   isDeleted: number;
 }
 
-export interface IEventWithDetails extends IEvents {
+export interface IEventWithDetails {
+  event: IEvents;
   details: IEventDetail[];
 }

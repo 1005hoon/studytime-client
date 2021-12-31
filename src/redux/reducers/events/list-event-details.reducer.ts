@@ -1,12 +1,20 @@
-import { IEventDetail } from '../../../utils/types/event-detail.interface';
+import { IEventWithDetails } from '../../../utils/types/events.interface';
 import { FetchEventsActionType } from '../../action-types';
 import { FetchEventsAction } from '../../actions';
 import { InitialState } from '../interfaces/initial-state.interface';
 
-const initialState: InitialState<IEventDetail[]> = {
+const initialState: InitialState<IEventWithDetails> = {
   loading: true,
   error: null,
-  data: [],
+  data: {
+    event: {
+      id: 0,
+      name: '',
+      createdAt: new Date(),
+      isDeleted: 0,
+    },
+    details: [],
+  },
 };
 
 const reducer = (state = initialState, action: FetchEventsAction) => {

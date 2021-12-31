@@ -23,11 +23,10 @@ const EventDetailsList: React.FC<EventDetailsListProps> = ({
           {new Date(event.createdAt).toLocaleDateString()}
         </ListTable.Data>
         <ListTable.Data>
-          {event.isDeleted === 0 ? '종료' : '진행중'}
+          {event.isDeleted === 0 ? '진행중' : '종료'}
         </ListTable.Data>
       </ListTable.Row>
     ));
-  console.log(details);
 
   return (
     <>
