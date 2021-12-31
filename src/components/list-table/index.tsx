@@ -3,6 +3,7 @@ import {
   StyledCategory,
   StyledData,
   StyledListTable,
+  StyledListTableContainer,
   StyledListTableHeader,
   StyledRow,
   StyledTableBody,
@@ -18,7 +19,11 @@ interface ListTableComposition {
 }
 
 const ListTable: React.FC<ListTableProps> & ListTableComposition = (props) => {
-  return <StyledListTable>{props.children}</StyledListTable>;
+  return (
+    <StyledListTableContainer>
+      <StyledListTable>{props.children}</StyledListTable>
+    </StyledListTableContainer>
+  );
 };
 
 ListTable.Header = function ListTableHeader(props) {

@@ -1,6 +1,10 @@
 import styled from 'styled-components/macro';
 import { ListTableCategoryProps } from '.';
 
+export const StyledListTableContainer = styled.div`
+  display: table;
+  width: 100%;
+`;
 export const StyledListTable = styled.table`
   width: 100%;
   height: 100%;
