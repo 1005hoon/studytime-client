@@ -64,7 +64,6 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
 
     if (window.confirm(`${event.name}을 생성할까요?`)) {
       onCreateEvent(event);
-      window.location.reload();
     }
   };
 
