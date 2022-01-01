@@ -1,4 +1,5 @@
 export interface IEventDetail {
+  [key: string]: string | number | null | Date;
   id: number;
   eventId: number;
   type: string | null;

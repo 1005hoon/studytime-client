@@ -7,6 +7,7 @@ import EventDetailsList from '../../container/events/EventDetailsList';
 import BasePageLayout from '../../container/layout/BasePageLayout';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
+import { IEventDetail } from '../../utils/types/event-detail.interface';
 
 interface EventDetailPageProps {}
 
@@ -16,12 +17,48 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     loading: eventWithDetailLoading,
     error: eventWithDetailError,
   } = useTypedSelector((state) => state.eventListWithDetail);
-  const { onFetchEventDetailsByEventId } = useActions();
+  const { onFetchEventDetailsByEventId, onCreateEventDetail } = useActions();
   const params = useParams();
-  const [eventId, setEventId] = useState(0);
+  const [detail, setDetail] = useState<Partial<IEventDetail>>({
+    eventId: 0,
+    type: '배너',
+    url1: '',
+    url2: '',
+    description: '',
+  });
+  const [detailImage, setDetailImage] = useState<File>();
+
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', detailImage as File);
+    formData.append('event', eventWithDetail.event.name);
+
+    Object.keys(detail).forEach((key) => {
+      if (key !== '') {
+        formData.append(key, detail[key] as string);
+      }
+    });
+
+    onCreateEventDetail(detail.eventId as number, formData);
+  };
+
+  const onChangeDetailData: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ) => {
+    const { name, value, files } = e.currentTarget;
+
+    if (name === 'image') {
+      const file = (files as FileList)[0];
+      setDetailImage(() => file);
+    } else {
+      setDetail((detail) => ({ ...detail, [name]: value }));
+    }
+  };
 
   useEffect(() => {
     const id = params.id as string;
+    setDetail((detail) => ({ ...detail, eventId: +id }));
     onFetchEventDetailsByEventId(+id);
   }, [params]);
 
@@ -40,7 +77,11 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
           <PageLayout.Column
             title={`${eventWithDetail.event.name} 상세정보 생성`}
           >
-            <CreateEventDetailForm />
+            <CreateEventDetailForm
+              eventDetail={detail}
+              onChange={onChangeDetailData}
+              onSubmit={onSubmit}
+            />
           </PageLayout.Column>
         </PageLayout.Row>
       </PageLayout.Content>
