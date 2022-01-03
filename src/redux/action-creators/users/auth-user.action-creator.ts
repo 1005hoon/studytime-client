@@ -9,7 +9,7 @@ import { axiosErrorHandler } from '../../../utils/axios-error.handler';
 import { LOGIN_OPTION } from '../../../utils/constants';
 
 export const onUserLogin = (loginOption: LOGIN_OPTION) => async () => {
-  const uri = `${process.env.REACT_APP_OAUTH_KAKAO_BASE_HOST}/oauth/authorize?client_id=${process.env.REACT_APP_OAUTH_KAKAO_CLIENT_ID}&client_secret=${process.env.REACT_APP_OAUTH_KAKAO_CLIENT_SECRET}&redirect_uri=${process.env.REACT_APP_OAUTH_KAKAO_REDIRECT_URI}&response_type=code`;
+  const uri = `${process.env.REACT_APP_OAUTH_KAKAO_BASE_HOST}/oauth/authorize?client_id=${process.env.REACT_APP_OAUTH_KAKAO_CLIENT_ID}&client_secret=${process.env.REACT_APP_OAUTH_KAKAO_CLIENT_SECRET}&redirect_uri=${process.env.REACT_APP_OAUTH_KAKAO_REDIRECT_URI}&scope=account_email&response_type=code&prompt=login`;
   window.open(uri, '_parent');
 };
 
@@ -22,6 +22,7 @@ export const onUserAuthChange =
         'GET',
         `/auth/kakao?${stringify({ code })}`
       );
+
       dispatch({ type: UserAuthActionType.LOGIN_USER_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
