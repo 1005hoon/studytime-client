@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import GoogleLogin from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
 import OAuthButton from '../../components/buttons/oauth-button';
 import LoginForm from '../../components/forms/login-form';
@@ -9,7 +10,7 @@ import { LOGIN_OPTION } from '../../utils/constants';
 interface LoginFormContainerProps {}
 
 const LoginFormContainer: React.FC<LoginFormContainerProps> = (props) => {
-  const { onUserLogin, isUserLoggedIn } = useActions();
+  const { onKakaoLogin, isUserLoggedIn, onGoogleLogin } = useActions();
   const navigate = useNavigate();
   const { loading, data } = useTypedSelector((state) => state.userAuth);
 
@@ -22,9 +23,22 @@ const LoginFormContainer: React.FC<LoginFormContainerProps> = (props) => {
 
   return (
     <LoginForm>
+      <GoogleLogin
+        clientId={process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}
+        buttonText='Log in'
+        onSuccess={onGoogleLogin}
+        onFailure={onGoogleLogin}
+        render={(renderProps) => (
+          <OAuthButton
+            provider={LOGIN_OPTION.GOOGLE}
+            onClick={renderProps.onClick}
+          />
+        )}
+      />
+
       <OAuthButton
         provider={LOGIN_OPTION.KAKAO}
-        onClick={() => onUserLogin(LOGIN_OPTION.KAKAO)}
+        onClick={() => onKakaoLogin()}
       />
     </LoginForm>
   );

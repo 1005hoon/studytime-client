@@ -10,11 +10,11 @@ const OAuthCallbackPage: React.FC<OAuthCallbackPageProps> = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { data, loading, error } = useTypedSelector((state) => state.userAuth);
-  const { onUserAuthChange } = useActions();
+  const { onKakaoLoginCallback } = useActions();
 
   useEffect(() => {
     const code = new URLSearchParams(location.search).get('code') as string;
-    onUserAuthChange(code);
+    onKakaoLoginCallback(code);
   }, []);
 
   useEffect(() => {
