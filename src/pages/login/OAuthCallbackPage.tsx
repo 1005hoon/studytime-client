@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Loading from '../../components/loading';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 
@@ -17,15 +18,16 @@ const OAuthCallbackPage: React.FC<OAuthCallbackPageProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (!loading && data.id !== 0) {
-      navigate('/');
-    } else if (!loading && error) {
+    if (!loading && error) {
       alert(error);
       navigate('/login');
     }
-  }, [data.id, error]);
 
-  return <div></div>;
+    if (!loading && data.id) {
+      navigate('/');
+    }
+  }, [loading, data, error]);
+  return <div>{loading ? <Loading /> : <Loading.ReleaseBody />}</div>;
 };
 
 export default OAuthCallbackPage;

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../components/loading';
 import Navbar from '../../components/navbar';
 import PageLayout from '../../components/page-layout';
 import { useActions } from '../../hooks/use-actions';
@@ -13,7 +14,7 @@ interface BasePageLayoutProps {
 
 const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
   const navigate = useNavigate();
-  const { loading, data } = useTypedSelector((state) => state.userAuth);
+  const { loading, data, error } = useTypedSelector((state) => state.userAuth);
   const { isUserLoggedIn } = useActions();
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
 
   useEffect(() => {
     if (!loading && data.id === 0) {
+      alert(error);
       navigate('/login');
     }
 
@@ -32,6 +34,7 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
     <PageLayout>
       <SidebarContainer />
       <Navbar />
+      {loading ? <Loading /> : <Loading.ReleaseBody />}
       {props.children}
     </PageLayout>
   );
