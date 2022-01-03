@@ -2,15 +2,11 @@ import { AxiosError } from 'axios';
 import { Dispatch } from 'redux';
 import { axiosErrorHandler } from '../../../utils/axios-error.handler';
 import request from '../../../utils/request';
-import { IEventDetail } from '../../../utils/types/event-detail.interface';
 import {
   IEvents,
   IEventWithDetails,
 } from '../../../utils/types/events.interface';
-import {
-  CreateEventDetailActionType,
-  CreateEventsActionType,
-} from '../../action-types';
+import { CreateEventsActionType } from '../../action-types';
 import { CreateEventAction, CreateEventDetailAction } from '../../actions';
 
 export const onCreateEvent =
