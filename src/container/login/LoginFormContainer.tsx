@@ -13,12 +13,12 @@ const LoginFormContainer: React.FC<LoginFormContainerProps> = (props) => {
   const navigate = useNavigate();
   const { loading, data } = useTypedSelector((state) => state.userAuth);
 
-  useEffect(() => {
-    isUserLoggedIn();
-    if (!loading && data.id !== 0) {
-      navigate('/');
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   isUserLoggedIn();
+  //   if (!loading && data.id !== 0) {
+  //     navigate('/');
+  //   }
+  // }, [data]);
 
   return (
     <LoginForm>
