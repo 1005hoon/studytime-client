@@ -34,7 +34,7 @@ const UserDetailPage: React.FC<UserDetailPageProps> = (props) => {
 
   return (
     <BasePageLayout>
-      <PageHeader title='사용자 관리' />
+      <PageHeader title={`${data.nickname} 님 정보 관리`} />
       <PageLayout.Content>
         <UserDetailList user={data} onClick={onChangeUserAdminStatus} />
       </PageLayout.Content>

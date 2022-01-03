@@ -5,6 +5,7 @@ import React, {
   useState,
 } from 'react';
 import { useLocation } from 'react-router-dom';
+import Loading from '../../components/loading';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
 import PaginationResult from '../../components/pagination/result';
@@ -59,6 +60,7 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
 
   return (
     <BasePageLayout title='사용자 관리'>
+      {loading ? <Loading /> : <Loading.ReleaseBody />}
       <PageHeader title='사용자 관리'>
         <SearchInput
           value={search}

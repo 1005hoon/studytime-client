@@ -1,4 +1,3 @@
-import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { IUser } from '../../../utils/types/user.interface';
 import { UpdateUserActionType, UserSearchActionType } from '../../action-types';
 import { UserUpdateAction } from '../../actions';
