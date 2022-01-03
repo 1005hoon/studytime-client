@@ -4,7 +4,7 @@ import { UserAuthAction } from '../../actions';
 import { InitialState } from '../interfaces/initial-state.interface';
 
 const initialState: InitialState<IUser> = {
-  loading: false,
+  loading: true,
   error: null,
   data: {
     id: 0,
