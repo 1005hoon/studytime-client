@@ -29,6 +29,7 @@ const reducer = (state = initialState, action: UserAuthAction) => {
     case UserAuthActionType.LOGIN_USER_SUCCESS:
       return {
         ...state,
+        error: null,
         loading: false,
         data: action.payload,
       };
@@ -41,6 +42,7 @@ const reducer = (state = initialState, action: UserAuthAction) => {
     case UserAuthActionType.AUTHENTICATE_USER_SUCCESS:
       return {
         ...state,
+        error: null,
         loading: false,
         data: action.payload,
       };
@@ -58,6 +60,7 @@ const reducer = (state = initialState, action: UserAuthAction) => {
     case UserAuthActionType.LOGOUT_USER_SUCCESS:
       return {
         ...state,
+        error: null,
         loading: false,
       };
     case UserAuthActionType.LOGOUT_USER_ERROR:

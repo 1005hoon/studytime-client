@@ -74,6 +74,7 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
           first={data.first}
           last={data.last}
           count={data.count}
+          loading={loading}
         />
         <UsersList users={data.data} />
         <Pagination

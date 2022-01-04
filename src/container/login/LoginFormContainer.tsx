@@ -12,12 +12,15 @@ interface LoginFormContainerProps {}
 const LoginFormContainer: React.FC<LoginFormContainerProps> = (props) => {
   const { onKakaoLogin, isUserLoggedIn, onGoogleLogin } = useActions();
   const navigate = useNavigate();
-  const { loading, data } = useTypedSelector((state) => state.userAuth);
+  const { loading, data, error } = useTypedSelector((state) => state.userAuth);
 
   useEffect(() => {
-    isUserLoggedIn();
+    isUserLoggedIn(data);
     if (!loading && data.id !== 0) {
       navigate('/');
+    }
+    if (!loading && error) {
+      alert(error);
     }
   }, [data]);
 

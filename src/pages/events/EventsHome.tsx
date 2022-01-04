@@ -5,6 +5,7 @@ import React, {
   useState,
 } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Loading from '../../components/loading';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
 import PaginationResult from '../../components/pagination/result';
@@ -92,6 +93,11 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
 
   return (
     <BasePageLayout>
+      {eventLoading || createEventLoading ? (
+        <Loading />
+      ) : (
+        <Loading.ReleaseBody />
+      )}
       <PageHeader title='이벤트 관리'>
         <SearchInput
           ref={searchRef}
@@ -106,6 +112,7 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
             first={events.first}
             last={events.last}
             count={events.count}
+            loading={eventLoading}
           />
         </PageLayout.Row>
         <PageLayout.Row>

@@ -18,17 +18,19 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
   const { isUserLoggedIn } = useActions();
 
   useEffect(() => {
-    isUserLoggedIn();
+    isUserLoggedIn(data);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (!loading && data.id === 0) {
+    if (!loading && !data.nickname) {
       alert(error);
       navigate('/login');
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, loading]);
+  }, [loading]);
 
   return (
     <PageLayout>

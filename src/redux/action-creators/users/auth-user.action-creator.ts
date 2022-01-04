@@ -65,7 +65,11 @@ export const onGoogleLogin =
   };
 
 export const isUserLoggedIn =
-  () => async (dispatch: Dispatch<UserAuthAction>) => {
+  (user: IUser) => async (dispatch: Dispatch<UserAuthAction>) => {
+    if (user.nickname) {
+      return;
+    }
+
     dispatch({ type: UserAuthActionType.AUTHENTICATE_USER });
     try {
       const { data } = await request<IUser>('GET', '/auth');
