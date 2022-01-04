@@ -18,7 +18,7 @@ const UserDetailList: React.FC<UserDetailListProps> = ({ user, onClick }) => {
             <ListTable.Category width='10%'>이메일</ListTable.Category>
             <ListTable.Category width='20%'>ST_ID</ListTable.Category>
             <ListTable.Category width='15%'>공부목적</ListTable.Category>
-            <ListTable.Category width='15%'>마지막 공부목록</ListTable.Category>
+            <ListTable.Category width='15%'>최근 공부목적</ListTable.Category>
             <ListTable.Category width='10%'>활동여부</ListTable.Category>
             <ListTable.Category width='10%'>관리자</ListTable.Category>
           </ListTable.Row>

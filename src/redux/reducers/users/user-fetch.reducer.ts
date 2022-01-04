@@ -6,7 +6,7 @@ import { UserFetchAction } from '../../actions/users/user-fetch.action';
 import { InitialState } from '../interfaces/initial-state.interface';
 
 const initialState: InitialState<IPaginatedResult<IUser>> = {
-  loading: true,
+  loading: false,
   error: null,
   data: {
     first: 0,
@@ -34,6 +34,7 @@ const reducer = (state = initialState, action: UserFetchAction) => {
       return {
         ...state,
         loading: false,
+        error: null,
         data: action.payload,
       };
     case UserSearchActionType.SEARCH_USERS:
@@ -51,6 +52,7 @@ const reducer = (state = initialState, action: UserFetchAction) => {
       return {
         ...state,
         loading: false,
+        error: null,
         data: action.payload,
       };
     default:

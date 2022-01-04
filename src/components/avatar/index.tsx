@@ -8,14 +8,12 @@ interface AvatarProps {
 }
 
 const Avatar: React.FC<AvatarProps> = (props) => {
+  const [altAvatarSrc] = useState(
+    `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 20)}`
+  );
   return (
     <StyledAvatarContainer>
-      <StyledAvatar
-        src={
-          props.src ||
-          `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 20)}`
-        }
-      />
+      <StyledAvatar src={props.src || altAvatarSrc} />
       <StyledNickname>{props.nickname}</StyledNickname>
     </StyledAvatarContainer>
   );
