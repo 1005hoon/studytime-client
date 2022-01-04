@@ -11,11 +11,13 @@ export const StyledListTable = styled.table`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 10px;
 `;
 
 export const StyledListTableHeader = styled.thead`
   color: #657177;
+  line-height: 5px;
 `;
 
 export const StyledCategory = styled.th<ListTableCategoryProps>`
@@ -25,36 +27,43 @@ export const StyledCategory = styled.th<ListTableCategoryProps>`
   font-weight: 300;
   width: ${({ width }) => (width ? width : 'auto')};
   font-size: 14px;
+  border-bottom: 1px solid #31363e;
 `;
 
 export const StyledTableBody = styled.tbody`
   tr {
-    border-left: 2px solid transparent;
+    td {
+      &:first-child {
+        border-left: 2px solid transparent;
+      }
+    }
 
     &:hover {
       cursor: pointer;
-      border-left: 2px solid #adde3a;
+      td {
+        &:first-child {
+          border-left: 2px solid #adde3a;
+        }
+      }
     }
   }
 `;
 
-export const StyledRow = styled.tr`
-  border-bottom: 5pt solid #282b30;
-`;
+export const StyledRow = styled.tr``;
 
 export const StyledData = styled.td`
   background-color: #2c3037;
-  padding: 22px 0;
+  height: 55px;
   font-size: 14px;
   text-align: center;
 
   &:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
   }
 
   &:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 `;
