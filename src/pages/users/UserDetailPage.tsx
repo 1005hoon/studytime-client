@@ -6,6 +6,7 @@ import BasePageLayout from '../../container/layout/BasePageLayout';
 import UserDetailList from '../../container/users/UserDetailList';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
+import { isAdmin } from '../../utils/constants';
 
 interface UserDetailPageProps {}
 
@@ -18,9 +19,14 @@ const UserDetailPage: React.FC<UserDetailPageProps> = (props) => {
   );
 
   const onChangeUserAdminStatus = () => {
-    if (window.confirm(`${data.nickname}님 의 어드민 권한을 수정할까요?`)) {
-      onUpdateUserAdminStatus(stId, data.isAdmin === 1 ? 0 : 1);
-      window.location.reload();
+    if (
+      window.confirm(
+        `${data.nickname}님 의 어드민 권한을 ${
+          isAdmin(data.isAdmin) ? '관리자' : '사용자'
+        }로 수정할까요?`
+      )
+    ) {
+      onUpdateUserAdminStatus(stId, isAdmin(data.isAdmin) ? 0 : 1);
     }
   };
 

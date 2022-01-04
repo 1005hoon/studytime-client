@@ -1,4 +1,5 @@
 import React from 'react';
+import Avatar from '../../components/avatar';
 import ListTable from '../../components/list-table';
 import { IUser } from '../../utils/types/user.interface';
 
@@ -13,8 +14,8 @@ const UserDetailList: React.FC<UserDetailListProps> = ({ user, onClick }) => {
       <ListTable>
         <ListTable.Header>
           <ListTable.Row>
-            <ListTable.Category width='15%'>닉네임</ListTable.Category>
-            <ListTable.Category width='20%'>이메일</ListTable.Category>
+            <ListTable.Category width='10%'>닉네임</ListTable.Category>
+            <ListTable.Category width='10%'>이메일</ListTable.Category>
             <ListTable.Category width='20%'>ST_ID</ListTable.Category>
             <ListTable.Category width='15%'>공부목적</ListTable.Category>
             <ListTable.Category width='15%'>마지막 공부목록</ListTable.Category>
@@ -24,7 +25,9 @@ const UserDetailList: React.FC<UserDetailListProps> = ({ user, onClick }) => {
         </ListTable.Header>
         <ListTable.Body>
           <ListTable.Row key={user.stId} onClick={onClick}>
-            <ListTable.Data>{user.nickname}</ListTable.Data>
+            <ListTable.Data>
+              <Avatar src={user.thumbnail} nickname={user.nickname} />
+            </ListTable.Data>
             <ListTable.Data>{user.email}</ListTable.Data>
             <ListTable.Data>{user.stId}</ListTable.Data>
             <ListTable.Data>{user.dDayName}</ListTable.Data>

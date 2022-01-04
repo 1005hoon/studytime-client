@@ -1,4 +1,5 @@
 export const __PROD__ = process.env.NODE_ENV === 'production';
+export const isAdmin = (isAdmin: number) => (isAdmin === 0 ? false : true);
 
 export enum ROUTES {
   HOME = '/',
