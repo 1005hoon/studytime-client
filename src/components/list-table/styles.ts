@@ -18,16 +18,16 @@ export const StyledListTable = styled.table`
 export const StyledListTableHeader = styled.thead`
   color: #657177;
   line-height: 5px;
+  text-align: left;
 `;
 
 export const StyledCategory = styled.th<ListTableCategoryProps>`
-  letter-spacing: -0.35px;
-  font-weight: 300;
-  padding: 17px 0;
-  font-weight: 300;
+  padding: 17px 20px;
   width: ${({ width }) => (width ? width : 'auto')};
-  font-size: 14px;
   border-bottom: 1px solid #31363e;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: -0.35px;
 `;
 
 export const StyledTableBody = styled.tbody`
@@ -53,9 +53,11 @@ export const StyledRow = styled.tr``;
 
 export const StyledData = styled.td`
   background-color: #2c3037;
-  height: 55px;
-  font-size: 14px;
-  text-align: center;
+  height: 65px;
+  padding: 10px 20px;
+  font-size: 16px;
+  letter-spacing: -0.47px;
+  text-align: left;
 
   &:first-child {
     border-top-left-radius: 5px;
@@ -63,7 +65,7 @@ export const StyledData = styled.td`
   }
 
   &:last-child {
+    padding-right: 20px;
     border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
   }
 `;
