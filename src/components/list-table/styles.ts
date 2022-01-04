@@ -26,7 +26,7 @@ export const StyledCategory = styled.th<ListTableCategoryProps>`
   width: ${({ width }) => (width ? width : 'auto')};
   border-bottom: 1px solid #31363e;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: -0.35px;
 `;
 
@@ -55,7 +55,7 @@ export const StyledData = styled.td`
   background-color: #2c3037;
   height: 65px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: -0.47px;
   text-align: left;
 

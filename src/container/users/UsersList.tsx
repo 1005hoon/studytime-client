@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Avatar from '../../components/avatar';
 import ListTable from '../../components/list-table';
 import { IUser } from '../../utils/types/user.interface';
 
@@ -26,14 +27,7 @@ const UsersList: React.FC<UsersListProps> = ({ users }) => {
         onClick={(e) => clickHandler(e, user.stId)}
       >
         <ListTable.Data>
-          <img
-            src={
-              user.thumbnail ||
-              'https://avatars.dicebear.com/api/avataaars/1.svg'
-            }
-            style={{ width: '45px', height: '45px', borderRadius: '50%' }}
-          />
-          {user.nickname}
+          <Avatar nickname={user.nickname} src={user.thumbnail} />
         </ListTable.Data>
         <ListTable.Data>{user.email}</ListTable.Data>
         <ListTable.Data>{user.stId}</ListTable.Data>
@@ -49,12 +43,12 @@ const UsersList: React.FC<UsersListProps> = ({ users }) => {
       <ListTable>
         <ListTable.Header>
           <ListTable.Row>
-            <ListTable.Category width='10%'>닉네임</ListTable.Category>
+            <ListTable.Category width='15%'>사용자 닉네임</ListTable.Category>
             <ListTable.Category width='15%'>이메일</ListTable.Category>
             <ListTable.Category width='15%'>ST_ID</ListTable.Category>
             <ListTable.Category width='15%'>공부목적</ListTable.Category>
             <ListTable.Category width='10%'>마지막 공부목록</ListTable.Category>
-            <ListTable.Category width='5%'>활동여부</ListTable.Category>
+            <ListTable.Category width='8%'>활동여부</ListTable.Category>
           </ListTable.Row>
         </ListTable.Header>
         <ListTable.Body>{renderUserLists()}</ListTable.Body>
