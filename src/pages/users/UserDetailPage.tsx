@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
 import BasePageLayout from '../../container/layout/BasePageLayout';
+import UserArticlesList from '../../container/users/UserArticlesList';
 import UserDetailList from '../../container/users/UserDetailList';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
@@ -42,7 +43,17 @@ const UserDetailPage: React.FC<UserDetailPageProps> = (props) => {
     <BasePageLayout>
       <PageHeader title={`${data.nickname} 님 정보 관리`} />
       <PageLayout.Content>
-        <UserDetailList user={data} onClick={onChangeUserAdminStatus} />
+        <PageLayout.Row>
+          <UserDetailList user={data} onClick={onChangeUserAdminStatus} />
+        </PageLayout.Row>
+        <PageLayout.Row>
+          <PageLayout.Column title='최근 작성한 글'>
+            <UserArticlesList />
+          </PageLayout.Column>
+          <PageLayout.Column title='최근 작성한 글'>
+            <UserArticlesList />
+          </PageLayout.Column>
+        </PageLayout.Row>
       </PageLayout.Content>
     </BasePageLayout>
   );
