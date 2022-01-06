@@ -1,6 +1,7 @@
 import React from 'react';
 import ListTable from '../../components/list-table';
 import { IArticle } from '../../utils/types/article.interface';
+import { CafeArticleCategoryEnum } from '../../utils/types/cafe-article-category.enum';
 
 interface UserArticlesListProps {
   articles: IArticle[];
@@ -10,13 +11,17 @@ const UserArticlesList: React.FC<UserArticlesListProps> = (props) => {
   const renderArticles = () =>
     props.articles.map((article) => (
       <ListTable.Row key={article.title}>
-        <ListTable.Data>{article.categoryId}</ListTable.Data>
+        <ListTable.Data>
+          {CafeArticleCategoryEnum[article.categoryId]}
+        </ListTable.Data>
         <ListTable.Data>
           {article.contents.length < 50
             ? article.contents
             : `${article.contents.slice(0, 50)}...`}
         </ListTable.Data>
-        <ListTable.Data>{article.createdAt}</ListTable.Data>
+        <ListTable.Data>
+          {new Date(article.createdAt).toLocaleDateString()}
+        </ListTable.Data>
         <ListTable.Data>{article.isDeleted ? '게시중' : '삭제'}</ListTable.Data>
       </ListTable.Row>
     ));
