@@ -1,5 +1,4 @@
 import { IUserDetail } from '../../../utils/types/user-detail.interface';
-import { IUser } from '../../../utils/types/user.interface';
 import { UpdateUserActionType } from '../../action-types';
 
 interface IUpdateUserAction {

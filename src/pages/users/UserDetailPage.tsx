@@ -50,10 +50,10 @@ const UserDetailPage: React.FC<UserDetailPageProps> = (props) => {
         </PageLayout.Row>
         <PageLayout.Row>
           <PageLayout.Column title='최근 작성한 글'>
-            <UserArticlesList />
+            <UserArticlesList articles={articles} />
           </PageLayout.Column>
           <PageLayout.Column title='최근 작성한 글'>
-            <UserArticlesList />
+            <UserArticlesList articles={articles} />
           </PageLayout.Column>
         </PageLayout.Row>
       </PageLayout.Content>

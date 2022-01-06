@@ -57,6 +57,7 @@ export const onSearchUserWithStId =
 
     try {
       const { data } = await request<IUserDetail>('GET', `/users/${stId}`);
+
       dispatch({
         type: UserSearchActionType.FETCH_USER_BY_STID_SUCCESS,
         payload: data,
