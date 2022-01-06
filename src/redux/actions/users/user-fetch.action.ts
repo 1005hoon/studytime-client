@@ -1,4 +1,5 @@
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
+import { IUserDetail } from '../../../utils/types/user-detail.interface';
 import { IUser } from '../../../utils/types/user.interface';
 import { UserSearchActionType } from '../../action-types';
 
@@ -22,7 +23,7 @@ interface IFetchUserBySTIdAction {
 
 interface IFetchUserBySTIdSuccessAction {
   type: UserSearchActionType.FETCH_USER_BY_STID_SUCCESS;
-  payload: IUser;
+  payload: IUserDetail;
 }
 
 interface IFetchUserBySTIdErrorAction {

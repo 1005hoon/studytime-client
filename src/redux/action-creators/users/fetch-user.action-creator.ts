@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { axiosErrorHandler } from '../../../utils/axios-error.handler';
 import request from '../../../utils/request';
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
+import { IUserDetail } from '../../../utils/types/user-detail.interface';
 import { IUser } from '../../../utils/types/user.interface';
 import { UserSearchActionType } from '../../action-types';
 import { UserFetchAction } from '../../actions/users/user-fetch.action';
@@ -55,7 +56,7 @@ export const onSearchUserWithStId =
     dispatch({ type: UserSearchActionType.FETCH_USER_BY_STID });
 
     try {
-      const { data } = await request<IUser>('GET', '/users', { st_id: stId });
+      const { data } = await request<IUserDetail>('GET', `/users/${stId}`);
       dispatch({
         type: UserSearchActionType.FETCH_USER_BY_STID_SUCCESS,
         payload: data,

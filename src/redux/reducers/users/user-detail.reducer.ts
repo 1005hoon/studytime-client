@@ -1,3 +1,4 @@
+import { IUserDetail } from '../../../utils/types/user-detail.interface';
 import { IUser } from '../../../utils/types/user.interface';
 import { UpdateUserActionType, UserSearchActionType } from '../../action-types';
 import { UserUpdateAction } from '../../actions';
@@ -5,21 +6,24 @@ import { UserFetchAction } from '../../actions/users/user-fetch.action';
 
 import { InitialState } from '../interfaces/initial-state.interface';
 
-const initialState: InitialState<IUser> = {
+const initialState: InitialState<IUserDetail> = {
   loading: true,
   error: null,
   data: {
-    id: 0,
-    stId: '',
-    nickname: '',
-    email: '',
-    isAdmin: 0,
-    thumbnail: '',
-    teamId: 0,
-    dDayName: '',
-    groupId: 0,
-    lastLeafName: '',
-    isActive: 0,
+    user: {
+      id: 0,
+      stId: '',
+      nickname: '',
+      email: '',
+      isAdmin: 0,
+      thumbnail: '',
+      teamId: 0,
+      dDayName: '',
+      groupId: 0,
+      lastLeafName: '',
+      isActive: 0,
+    },
+    articles: [],
   },
 };
 

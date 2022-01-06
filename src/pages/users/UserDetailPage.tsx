@@ -15,19 +15,21 @@ const UserDetailPage: React.FC<UserDetailPageProps> = (props) => {
   const [stId, setStId] = useState('');
   const params = useParams();
   const { onUpdateUserAdminStatus } = useActions();
-  const { data, loading, error } = useTypedSelector(
-    (state) => state.userDetail
-  );
+  const {
+    data: { user, articles },
+    loading,
+    error,
+  } = useTypedSelector((state) => state.userDetail);
 
   const onChangeUserAdminStatus = () => {
     if (
       window.confirm(
-        `${data.nickname}님 의 어드민 권한을 ${
-          isAdmin(data.isAdmin) ? '관리자' : '사용자'
+        `${user.nickname}님 의 어드민 권한을 ${
+          isAdmin(user.isAdmin) ? '관리자' : '사용자'
         }로 수정할까요?`
       )
     ) {
-      onUpdateUserAdminStatus(stId, isAdmin(data.isAdmin) ? 0 : 1);
+      onUpdateUserAdminStatus(stId, isAdmin(user.isAdmin) ? 0 : 1);
     }
   };
 
@@ -41,10 +43,10 @@ const UserDetailPage: React.FC<UserDetailPageProps> = (props) => {
 
   return (
     <BasePageLayout>
-      <PageHeader title={`${data.nickname} 님 정보 관리`} />
+      <PageHeader title={`${user.nickname} 님 정보 관리`} />
       <PageLayout.Content>
         <PageLayout.Row>
-          <UserDetailList user={data} onClick={onChangeUserAdminStatus} />
+          <UserDetailList user={user} onClick={onChangeUserAdminStatus} />
         </PageLayout.Row>
         <PageLayout.Row>
           <PageLayout.Column title='최근 작성한 글'>

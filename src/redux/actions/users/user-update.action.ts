@@ -1,3 +1,4 @@
+import { IUserDetail } from '../../../utils/types/user-detail.interface';
 import { IUser } from '../../../utils/types/user.interface';
 import { UpdateUserActionType } from '../../action-types';
 
@@ -7,7 +8,7 @@ interface IUpdateUserAction {
 
 interface IUpdateUserSuccessAction {
   type: UpdateUserActionType.UPDATE_USER_ADMIN_STATUS_SUCCESS;
-  payload: IUser;
+  payload: IUserDetail;
 }
 
 interface IUpdateUserErrorAction {
