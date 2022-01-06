@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import articlesListReducer from './articles/list-article.reducer';
 import eventsListReducer from './events/list-events.reducer';
 import eventDetailsListReducer from './events/list-event-details.reducer';
 import eventWithDetailListReducer from './events/list-event-details.reducer';
@@ -8,6 +9,7 @@ import userListReducer from './users/user-fetch.reducer';
 import userDetailReducer from './users/user-detail.reducer';
 
 const reducer = combineReducers({
+  articleList: articlesListReducer,
   eventList: eventsListReducer,
   eventListWithDetail: eventWithDetailListReducer,
   eventDetailsList: eventDetailsListReducer,
