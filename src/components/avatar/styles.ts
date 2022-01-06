@@ -15,6 +15,7 @@ export const StyledAvatar = styled.div<{ src: string }>`
   background-repeat: no-repeat;
   background-size: cover;
   width: 40px;
+  min-width: 40px;
   height: 40px;
   border-radius: 50%;
 `;
