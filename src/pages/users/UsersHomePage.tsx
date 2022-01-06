@@ -46,6 +46,7 @@ const UsersHomePage: React.FC<UsersHomePageProps> = (props) => {
       // 페이지 1로 사용자 정보 조회
       onFetchAllUsers(currentPage, search);
     } else {
+      setCurrentPage(() => pageNumber);
       onFetchAllUsers(pageNumber, search);
     }
   }, [location.search]);
