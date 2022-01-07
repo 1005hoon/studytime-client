@@ -79,6 +79,7 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
       // 페이지 1로 사용자 정보 조회
       onFetchAllEvents(currentPage, search);
     } else {
+      setCurrentPage(() => pageNumber);
       onFetchAllEvents(pageNumber, search);
     }
   }, [location.search]);
