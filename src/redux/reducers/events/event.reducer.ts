@@ -1,8 +1,8 @@
-import { IEvents } from '../../../utils/types/events.interface';
+import { IEvent } from '../../../utils/types/event.interface';
 import { IInitialReducerState } from '../interfaces/initial-state.interface';
 
 export interface IEventState extends IInitialReducerState {
-  event: IEvents;
+  event: IEvent;
 }
 
 const initialState: IEventState = {

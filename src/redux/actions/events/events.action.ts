@@ -20,7 +20,24 @@ interface IFetchEventsErrorAction {
   payload: string;
 }
 
+interface ICreateEventAction {
+  type: EventAcionType.CREATE_EVENT;
+}
+
+interface ICreateEventSuccessAction {
+  type: EventAcionType.CREATE_EVENT_SUCCESS;
+  payload: IPaginatedResult<IEvents>;
+}
+
+interface ICreateEventErrorAction {
+  type: EventAcionType.CREATE_EVENT_ERROR;
+  payload: string;
+}
+
 export type EventActions =
+  | ICreateEventAction
+  | ICreateEventErrorAction
+  | ICreateEventSuccessAction
   | IFetchEventsAction
   | IFetchEventsErrorAction
   | IFetchEventsSuccessAction;
