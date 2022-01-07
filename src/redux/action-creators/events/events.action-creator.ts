@@ -8,7 +8,7 @@ import { EventAcionType } from '../../action-types/events/events.action-type';
 import { EventActions } from '../../actions';
 
 export const handleFetchAllEvents =
-  (pages: number, search?: string) =>
+  (page: number, search?: string) =>
   async (dispatch: Dispatch<EventActions>) => {
     dispatch({ type: EventAcionType.FETCH_EVENTS });
 
@@ -16,7 +16,7 @@ export const handleFetchAllEvents =
       const { data } = await request<IPaginatedResult<IEvent>>(
         'GET',
         '/events',
-        { search, pages }
+        { search, page }
       );
       dispatch({ type: EventAcionType.FETCH_EVENTS_SUCCESS, payload: data });
     } catch (error) {
@@ -40,7 +40,19 @@ export const handleCreateEvent =
           ...dto,
         }
       );
+
       dispatch({ type: EventAcionType.CREATE_EVENT_SUCCESS, payload: data });
+
+      const { data: eventList } = await request<IPaginatedResult<IEvent>>(
+        'GET',
+        '/events',
+        { page: 1 }
+      );
+
+      dispatch({
+        type: EventAcionType.FETCH_EVENTS_SUCCESS,
+        payload: eventList,
+      });
     } catch (error) {
       dispatch({
         type: EventAcionType.CREATE_EVENT_ERROR,
