@@ -17,25 +17,24 @@ import Pagination from '../../container/layout/Pagination';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { getPagingData } from '../../utils/get-paging-data';
+import { IEvent } from '../../utils/types/event.interface';
 import { IEvents } from '../../utils/types/events.interface';
 
 interface EventsHomeProps {}
 
 const EventsHome: React.FC<EventsHomeProps> = (props) => {
-  const { onFetchAllEvents, onCreateEvent } = useActions();
-  const {
-    data: events,
-    loading: eventLoading,
-    error: eventError,
-  } = useTypedSelector((state) => state.eventList);
-  const { loading: createEventLoading, error: createEventError } =
-    useTypedSelector((state) => state.eventListWithDetail);
+  const { handleFetchAllEvents, handleCreateEvent } = useActions();
+  const { loading, error, event, eventList } = useTypedSelector(
+    (state) => state.events
+  );
+  // const { loading: createEventLoading, error: createEventError } =
+  //   useTypedSelector((state) => state.eventListWithDetail);
   const navigate = useNavigate();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState<number[]>([]);
   const [search, setSearch] = useState('');
-  const [event, setEvent] = useState<Partial<IEvents>>({ name: '' });
+  const [eventData, setEventData] = useState<Partial<IEvent>>({ name: '' });
   const location = useLocation();
 
   const setPagingData = (count: number, currentPage: number) => {
@@ -45,7 +44,7 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
 
   const onEventSearch: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
-      onFetchAllEvents(currentPage, search);
+      handleFetchAllEvents(currentPage, search);
     }
   };
 
@@ -53,18 +52,18 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
     e
   ) => {
     const { name, value } = e.target;
-    setEvent((e) => ({ ...e, [name]: value }));
+    setEventData((prev) => ({ ...prev, [name]: value }));
   };
 
   const onCreateFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    if (!event.name?.length) {
+    if (!eventData.name?.length) {
       alert('이벤트 이름을 입력해주세요');
       return;
     }
 
-    if (window.confirm(`${event.name}을 생성할까요?`)) {
-      onCreateEvent(event);
+    if (window.confirm(`${eventData.name}을 생성할까요?`)) {
+      handleCreateEvent(eventData);
     }
   };
 
@@ -77,16 +76,16 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
 
     if (!pageNumber) {
       // 페이지 1로 사용자 정보 조회
-      onFetchAllEvents(currentPage, search);
+      handleFetchAllEvents(currentPage, search);
     } else {
       setCurrentPage(() => pageNumber);
-      onFetchAllEvents(pageNumber, search);
+      handleFetchAllEvents(pageNumber, search);
     }
   }, [location.search]);
 
   useEffect(() => {
-    setPagingData(events.count, currentPage);
-  }, [events]);
+    setPagingData(eventList.count, currentPage);
+  }, [eventList]);
 
   useEffect(() => {
     searchRef.current?.focus();
@@ -94,11 +93,7 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
 
   return (
     <BasePageLayout>
-      {eventLoading || createEventLoading ? (
-        <Loading />
-      ) : (
-        <Loading.ReleaseBody />
-      )}
+      {loading ? <Loading /> : <Loading.ReleaseBody />}
       <PageHeader title='이벤트 관리'>
         <SearchInput
           ref={searchRef}
@@ -110,15 +105,15 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
       <PageLayout.Content>
         <PageLayout.Row>
           <PaginationResult
-            first={events.first}
-            last={events.last}
-            count={events.count}
-            loading={eventLoading}
+            first={eventList.first}
+            last={eventList.last}
+            count={eventList.count}
+            loading={loading}
           />
         </PageLayout.Row>
         <PageLayout.Row>
           <PageLayout.Column title='이벤트 조회'>
-            <EventsList events={events.data} onClick={onSelectEvent} />
+            <EventsList events={eventList.data} onClick={onSelectEvent} />
             <Pagination
               route='events'
               currentPage={currentPage}
@@ -128,7 +123,7 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
           </PageLayout.Column>
           <PageLayout.Column title='새로운 이벤트 생성'>
             <CreateEventForm
-              event={event}
+              event={eventData}
               onChange={onChangeEventFormInput}
               onSubmit={onCreateFormSubmit}
             />

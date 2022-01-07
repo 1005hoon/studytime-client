@@ -1,10 +1,10 @@
 import React from 'react';
 import RoundButton from '../../components/buttons/round-button';
 import InputForm from '../../components/forms/input-form';
-import { IEvents } from '../../utils/types/events.interface';
+import { IEvent } from '../../utils/types/event.interface';
 
 interface CreateEventFormProps {
-  event: Partial<IEvents>;
+  event: Partial<IEvent>;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
 }

@@ -12,12 +12,12 @@ import { IEventDetail } from '../../utils/types/event-detail.interface';
 interface EventDetailPageProps {}
 
 const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
-  const {
-    data: eventWithDetail,
-    loading: eventWithDetailLoading,
-    error: eventWithDetailError,
-  } = useTypedSelector((state) => state.eventListWithDetail);
-  const { onFetchEventDetailsByEventId, onCreateEventDetail } = useActions();
+  // const {
+  //   data: eventWithDetail,
+  //   loading: eventWithDetailLoading,
+  //   error: eventWithDetailError,
+  // } = useTypedSelector((state) => state.eventListWithDetail);
+  // const {} = useActions();
   const params = useParams();
   const [detail, setDetail] = useState<Partial<IEventDetail>>({
     eventId: 0,
@@ -32,7 +32,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('image', detailImage as File);
-    formData.append('event', eventWithDetail.event.name);
+    // formData.append('event', eventWithDetail.event.name);
 
     Object.keys(detail).forEach((key) => {
       if (key !== '') {
@@ -40,7 +40,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
       }
     });
 
-    onCreateEventDetail(detail.eventId as number, formData);
+    // onCreateEventDetail(detail.eventId as number, formData);
   };
 
   const onChangeDetailData: React.ChangeEventHandler<HTMLInputElement> = (
@@ -59,7 +59,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   useEffect(() => {
     const id = params.id as string;
     setDetail((detail) => ({ ...detail, eventId: +id }));
-    onFetchEventDetailsByEventId(+id);
+    // onFetchEventDetailsByEventId(+id);
   }, [params]);
 
   return (
@@ -68,14 +68,14 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
       <PageLayout.Content>
         <PageLayout.Row>
           <PageLayout.Column title='이벤트 상세정보 관리'>
-            <EventDetailsList
+            {/* <EventDetailsList
               details={eventWithDetail.details}
               selectedEvent={eventWithDetail.event.name}
               onClick={console.log}
-            />
+            /> */}
           </PageLayout.Column>
           <PageLayout.Column
-            title={`${eventWithDetail.event.name} 상세정보 생성`}
+          // title={`${eventWithDetail.event.name} 상세정보 생성`}
           >
             <CreateEventDetailForm
               eventDetail={detail}
