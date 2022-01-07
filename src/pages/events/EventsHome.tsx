@@ -64,6 +64,9 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
 
     if (window.confirm(`${eventData.name}을 생성할까요?`)) {
       handleCreateEvent(eventData);
+      setEventData(() => ({
+        name: '',
+      }));
     }
   };
 
