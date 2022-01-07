@@ -1,3 +1,4 @@
+import { IEvent } from '../../../utils/types/event.interface';
 import {
   IEvents,
   IEventWithDetails,
@@ -26,7 +27,7 @@ interface ICreateEventAction {
 
 interface ICreateEventSuccessAction {
   type: EventAcionType.CREATE_EVENT_SUCCESS;
-  payload: IPaginatedResult<IEvents>;
+  payload: IEvent;
 }
 
 interface ICreateEventErrorAction {
