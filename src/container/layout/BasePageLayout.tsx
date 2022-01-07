@@ -36,8 +36,7 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
     <PageLayout>
       <SidebarContainer />
       <Navbar />
-      {loading ? <Loading /> : <Loading.ReleaseBody />}
-      {props.children}
+      {loading ? <Loading /> : <>{props.children}</>}
     </PageLayout>
   );
 };

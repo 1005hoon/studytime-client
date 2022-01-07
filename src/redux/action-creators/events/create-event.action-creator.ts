@@ -25,7 +25,6 @@ export const onCreateEvent =
         type: CreateEventsActionType.CREATE_EVENT_SUCCESS,
         payload: data,
       });
-      window.location.reload();
     } catch (error) {
       dispatch({
         type: CreateEventsActionType.CREATE_EVENT_ERROR,
