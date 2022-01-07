@@ -3,3 +3,8 @@ export interface InitialState<T> {
   loading: boolean;
   error: null | string;
 }
+
+export interface IInitialReducerState {
+  loading: boolean;
+  error: null | string;
+}
