@@ -6,6 +6,7 @@ import { IEventDetail } from '../../utils/types/event-detail.interface';
 
 interface CreateEventDetailFormProps {
   eventDetail: Partial<IEventDetail>;
+  imagePreview: string;
   onChange: React.ChangeEventHandler<HTMLSelectElement | HTMLInputElement>;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
 }
@@ -65,6 +66,11 @@ const CreateEventDetailForm: React.FC<CreateEventDetailFormProps> = (props) => {
           onChange={props.onChange}
         />
       </InputForm.Group>
+      <InputForm.Group>
+        <label>이미지 미리보기</label>
+        <img src={props.imagePreview} style={{ width: '250px' }} />
+      </InputForm.Group>
+
       <InputForm.Group>
         <RoundButton primary>생성하기</RoundButton>
       </InputForm.Group>

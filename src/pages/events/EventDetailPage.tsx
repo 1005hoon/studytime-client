@@ -22,6 +22,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     description: '',
   });
   const [detailImage, setDetailImage] = useState<File>();
+  const [imagePreview, setImagePreview] = useState('');
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -46,6 +47,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     if (name === 'image') {
       const file = (files as FileList)[0];
       setDetailImage(() => file);
+      setImagePreview(() => URL.createObjectURL(file));
     } else {
       setDetailData((detail) => ({ ...detail, [name]: value }));
     }
@@ -73,6 +75,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
           // title={`${eventWithDetail.event.name} 상세정보 생성`}
           >
             <CreateEventDetailForm
+              imagePreview={imagePreview}
               eventDetail={detailData}
               onChange={onChangeDetailData}
               onSubmit={onSubmit}
