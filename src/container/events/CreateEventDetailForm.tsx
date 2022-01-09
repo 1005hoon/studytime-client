@@ -22,7 +22,6 @@ const CreateEventDetailForm: React.FC<CreateEventDetailFormProps> = (props) => {
         >
           <option value='배너'>배너</option>
           <option value='상세'>상세 페이지</option>
-          <option value='팝업'>팝업 페이지</option>
         </Select>
       </InputForm.Group>
       <InputForm.Group>
@@ -45,16 +44,18 @@ const CreateEventDetailForm: React.FC<CreateEventDetailFormProps> = (props) => {
           onChange={props.onChange}
         />
       </InputForm.Group>
-      <InputForm.Group>
-        <label htmlFor='url2'>CTA 링크 2</label>
-        <input
-          type='url'
-          name='url2'
-          placeholder='두번째 CTA에 적용할 링크'
-          value={props.eventDetail.url2 as string}
-          onChange={props.onChange}
-        />
-      </InputForm.Group>
+      {props.eventDetail.type === '상세' && (
+        <InputForm.Group>
+          <label htmlFor='url2'>CTA 링크 2</label>
+          <input
+            type='url'
+            name='url2'
+            placeholder='두번째 CTA에 적용할 링크'
+            value={props.eventDetail.url2 as string}
+            onChange={props.onChange}
+          />
+        </InputForm.Group>
+      )}
       <InputForm.Group>
         <label htmlFor='img_url'>이미지 등록</label>
         <input

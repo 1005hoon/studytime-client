@@ -1,3 +1,4 @@
+import { IEventDetail } from '../../../utils/types/event-detail.interface';
 import { IEvent } from '../../../utils/types/event.interface';
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { EventAcionType } from '../../action-types/events/events.action-type';
@@ -7,6 +8,7 @@ import { IInitialReducerState } from '../interfaces/initial-state.interface';
 export interface IEventState extends IInitialReducerState {
   event: IEvent;
   eventList: IPaginatedResult<IEvent>;
+  detailList: IPaginatedResult<IEventDetail>;
 }
 
 const initialState: IEventState = {
@@ -19,6 +21,13 @@ const initialState: IEventState = {
     isDeleted: 0,
   },
   eventList: {
+    first: 0,
+    last: 0,
+    count: 0,
+    limit: 10,
+    data: [],
+  },
+  detailList: {
     first: 0,
     last: 0,
     count: 0,
@@ -66,7 +75,27 @@ const reducer = (state: IEventState = initialState, action: EventActions) => {
         ...state,
         loading: false,
         error: null,
-        eventList: action.payload,
+        eventList: { ...action.payload },
+      };
+
+    case EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        detailList: { ...action.payload },
       };
 
     default:

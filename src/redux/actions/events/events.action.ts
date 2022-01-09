@@ -1,10 +1,8 @@
+import { IEventDetail } from '../../../utils/types/event-detail.interface';
 import { IEvent } from '../../../utils/types/event.interface';
-import {
-  IEvents,
-  IEventWithDetails,
-} from '../../../utils/types/events.interface';
+import { IEvents } from '../../../utils/types/events.interface';
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
-import { FetchEventsActionType } from '../../action-types';
+
 import { EventAcionType } from '../../action-types/events/events.action-type';
 
 interface IFetchEventsAction {
@@ -35,7 +33,24 @@ interface ICreateEventErrorAction {
   payload: string;
 }
 
+interface IFetchEventDetailByEventIdAction {
+  type: EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID;
+}
+
+interface IFetchEventDetailByEventIdSuccessAction {
+  type: EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID_SUCCESS;
+  payload: IPaginatedResult<IEventDetail>;
+}
+
+interface IFetchEventDetailByEventIdErrorAction {
+  type: EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID_ERROR;
+  payload: string;
+}
+
 export type EventActions =
+  | IFetchEventDetailByEventIdAction
+  | IFetchEventDetailByEventIdErrorAction
+  | IFetchEventDetailByEventIdSuccessAction
   | ICreateEventAction
   | ICreateEventErrorAction
   | ICreateEventSuccessAction

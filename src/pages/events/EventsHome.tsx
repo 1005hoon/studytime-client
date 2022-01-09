@@ -18,7 +18,6 @@ import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { getPagingData } from '../../utils/get-paging-data';
 import { IEvent } from '../../utils/types/event.interface';
-import { IEvents } from '../../utils/types/events.interface';
 
 interface EventsHomeProps {}
 
@@ -27,8 +26,6 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
   const { loading, error, event, eventList } = useTypedSelector(
     (state) => state.events
   );
-  // const { loading: createEventLoading, error: createEventError } =
-  //   useTypedSelector((state) => state.eventListWithDetail);
   const navigate = useNavigate();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [currentPage, setCurrentPage] = useState(1);

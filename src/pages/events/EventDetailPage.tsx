@@ -12,16 +12,11 @@ import { IEventDetail } from '../../utils/types/event-detail.interface';
 interface EventDetailPageProps {}
 
 const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
-  // const {
-  //   data: eventWithDetail,
-  //   loading: eventWithDetailLoading,
-  //   error: eventWithDetailError,
-  // } = useTypedSelector((state) => state.eventListWithDetail);
-  // const {} = useActions();
   const params = useParams();
-  const [detail, setDetail] = useState<Partial<IEventDetail>>({
+  const { handleFetchEventDetailsByEventId } = useActions();
+  const [detailData, setDetailData] = useState<Partial<IEventDetail>>({
     eventId: 0,
-    type: '배너',
+    type: '',
     url1: '',
     url2: '',
     description: '',
@@ -34,9 +29,9 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     formData.append('image', detailImage as File);
     // formData.append('event', eventWithDetail.event.name);
 
-    Object.keys(detail).forEach((key) => {
+    Object.keys(detailData).forEach((key) => {
       if (key !== '') {
-        formData.append(key, detail[key] as string);
+        formData.append(key, detailData[key] as string);
       }
     });
 
@@ -52,15 +47,15 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
       const file = (files as FileList)[0];
       setDetailImage(() => file);
     } else {
-      setDetail((detail) => ({ ...detail, [name]: value }));
+      setDetailData((detail) => ({ ...detail, [name]: value }));
     }
   };
 
   useEffect(() => {
     const id = params.id as string;
-    setDetail((detail) => ({ ...detail, eventId: +id }));
-    // onFetchEventDetailsByEventId(+id);
-  }, [params]);
+
+    handleFetchEventDetailsByEventId(+id);
+  }, []);
 
   return (
     <BasePageLayout>
@@ -78,7 +73,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
           // title={`${eventWithDetail.event.name} 상세정보 생성`}
           >
             <CreateEventDetailForm
-              eventDetail={detail}
+              eventDetail={detailData}
               onChange={onChangeDetailData}
               onSubmit={onSubmit}
             />
