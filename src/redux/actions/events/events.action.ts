@@ -39,7 +39,10 @@ interface IFetchEventDetailByEventIdAction {
 
 interface IFetchEventDetailByEventIdSuccessAction {
   type: EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID_SUCCESS;
-  payload: IPaginatedResult<IEventDetail>;
+  payload: {
+    event: IEvent;
+    details: IEventDetail[];
+  };
 }
 
 interface IFetchEventDetailByEventIdErrorAction {

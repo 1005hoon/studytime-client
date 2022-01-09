@@ -8,7 +8,7 @@ import { IInitialReducerState } from '../interfaces/initial-state.interface';
 export interface IEventState extends IInitialReducerState {
   event: IEvent;
   eventList: IPaginatedResult<IEvent>;
-  detailList: IPaginatedResult<IEventDetail>;
+  detailList: IEventDetail[];
 }
 
 const initialState: IEventState = {
@@ -27,13 +27,7 @@ const initialState: IEventState = {
     limit: 10,
     data: [],
   },
-  detailList: {
-    first: 0,
-    last: 0,
-    count: 0,
-    limit: 10,
-    data: [],
-  },
+  detailList: [],
 };
 
 const reducer = (state: IEventState = initialState, action: EventActions) => {
@@ -95,7 +89,8 @@ const reducer = (state: IEventState = initialState, action: EventActions) => {
         ...state,
         loading: false,
         error: null,
-        detailList: { ...action.payload },
+        detailList: [...action.payload.details],
+        event: { ...action.payload.event },
       };
 
     default:

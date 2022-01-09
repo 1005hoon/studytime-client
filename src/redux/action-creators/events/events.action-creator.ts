@@ -67,10 +67,11 @@ export const handleFetchEventDetailsByEventId =
     dispatch({ type: EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID });
 
     try {
-      const { data } = await request<IPaginatedResult<IEventDetail>>(
-        'GET',
-        `/events/${eventId}/details`
-      );
+      const { data } = await request<{
+        event: IEvent;
+        details: IEventDetail[];
+      }>('GET', `/events/${eventId}`);
+
       dispatch({
         type: EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID_SUCCESS,
         payload: data,
