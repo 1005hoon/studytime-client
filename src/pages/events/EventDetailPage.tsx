@@ -13,6 +13,7 @@ interface EventDetailPageProps {}
 
 const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   const params = useParams();
+  const { loading, error, event } = useTypedSelector((state) => state.events);
   const { handleFetchEventDetailsByEventId } = useActions();
   const [detailData, setDetailData] = useState<Partial<IEventDetail>>({
     eventId: 0,
@@ -28,10 +29,9 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('image', detailImage as File);
-    // formData.append('event', eventWithDetail.event.name);
 
     Object.keys(detailData).forEach((key) => {
-      if (key !== '') {
+      if (key) {
         formData.append(key, detailData[key] as string);
       }
     });
@@ -64,16 +64,14 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
       <PageHeader title='이벤트 관리' />
       <PageLayout.Content>
         <PageLayout.Row>
-          <PageLayout.Column title='이벤트 상세정보 관리'>
+          <PageLayout.Column title={`${event.name} 상세정보 관리`}>
             {/* <EventDetailsList
               details={eventWithDetail.details}
               selectedEvent={eventWithDetail.event.name}
               onClick={console.log}
             /> */}
           </PageLayout.Column>
-          <PageLayout.Column
-          // title={`${eventWithDetail.event.name} 상세정보 생성`}
-          >
+          <PageLayout.Column title={`${event.name} 상세정보 생성`}>
             <CreateEventDetailForm
               imagePreview={imagePreview}
               eventDetail={detailData}
