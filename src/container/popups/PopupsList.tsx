@@ -1,5 +1,6 @@
 import React from 'react';
 import ListTable from '../../components/list-table';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { IPopup } from '../../utils/types/popup.interface';
 
 interface PopupsListProps {
@@ -8,15 +9,21 @@ interface PopupsListProps {
 }
 
 const PopupsList: React.FC<PopupsListProps> = (props) => {
+  const eventsList = useTypedSelector((state) => state.popups.eventList);
   const renderPopupLists = () =>
     props.popups.map((popup) => (
       <ListTable.Row key={popup.id} onClick={() => props.onClick(popup.id)}>
-        <ListTable.Data>{popup.targetId}</ListTable.Data>
+        <ListTable.Data>
+          {eventsList.find((event) => event.id === popup.targetId)?.name}
+        </ListTable.Data>
         <ListTable.Data>
           {popup.screen === 'event' ? '이벤트' : '공지'}
         </ListTable.Data>
+        <ListTable.Data>{popup.description.slice(0, 15)}</ListTable.Data>
+        <ListTable.Data>
+          {new Date(popup.createdAt).toLocaleDateString()}
+        </ListTable.Data>
         <ListTable.Data>{popup.useYn ? '게시중' : '게시 중지'}</ListTable.Data>
-        <ListTable.Data>{popup.description}</ListTable.Data>
       </ListTable.Row>
     ));
 
@@ -24,10 +31,11 @@ const PopupsList: React.FC<PopupsListProps> = (props) => {
     <ListTable>
       <ListTable.Header>
         <ListTable.Row>
-          <ListTable.Category>팝업 이름</ListTable.Category>
-          <ListTable.Category>팝업 유형</ListTable.Category>
-          <ListTable.Category>게시 여부</ListTable.Category>
-          <ListTable.Category>팝업 설명</ListTable.Category>
+          <ListTable.Category width='20%'>팝업 이름</ListTable.Category>
+          <ListTable.Category width='20%'>팝업 유형</ListTable.Category>
+          <ListTable.Category width='25%'>팝업 설명</ListTable.Category>
+          <ListTable.Category width='15%'>생성일</ListTable.Category>
+          <ListTable.Category width='20%'>게시 여부</ListTable.Category>
         </ListTable.Row>
       </ListTable.Header>
       <ListTable.Body>{renderPopupLists()}</ListTable.Body>

@@ -29,7 +29,7 @@ export const StyledLayoutRow = styled.div<PageLayoutColumnRowProps>`
 `;
 
 export const StyledLayoutColumn = styled.div`
-  flex: 1 1 400px;
+  flex: 1 1 500px;
   flex-wrap: wrap;
 `;
 
