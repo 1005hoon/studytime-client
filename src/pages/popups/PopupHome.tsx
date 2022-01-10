@@ -12,10 +12,12 @@ import PaginationResult from '../../components/pagination/result';
 import SearchInput from '../../components/search-input';
 import BasePageLayout from '../../container/layout/BasePageLayout';
 import Pagination from '../../container/layout/Pagination';
+import CreatePopupForm from '../../container/popups/CreatePopupForm';
 import PopupsList from '../../container/popups/PopupsList';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { getPagingData } from '../../utils/get-paging-data';
+import { IPopup } from '../../utils/types/popup.interface';
 
 interface PopupHomeProps {}
 
@@ -26,6 +28,11 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState<number[]>([]);
   const { handleFetchAllPopups } = useActions();
+
+  const [popupData, setPopupdata] = useState<Partial<IPopup>>();
+  const [popupImage, setPopupImage] = useState<File>();
+  const [imagePreview, setImagePreview] = useState('');
+
   const { loading, popupList, error } = useTypedSelector(
     (state) => state.popups
   );
@@ -82,7 +89,9 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
               pages={pages}
             />
           </PageLayout.Column>
-          <PageLayout.Column title='팝업 조회'></PageLayout.Column>
+          <PageLayout.Column title='새로운 팝업 생성'>
+            <CreatePopupForm />
+          </PageLayout.Column>
         </PageLayout.Row>
       </PageLayout.Content>
     </BasePageLayout>
