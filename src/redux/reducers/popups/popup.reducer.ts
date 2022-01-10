@@ -1,6 +1,8 @@
 import { IEvent } from '../../../utils/types/event.interface';
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { IPopup } from '../../../utils/types/popup.interface';
+import { PopupsActionType } from '../../action-types';
+import { PopupsAction } from '../../actions';
 import { IInitialReducerState } from '../interfaces/initial-state.interface';
 
 export interface IPopupState extends IInitialReducerState {
@@ -33,8 +35,29 @@ const initialState: IPopupState = {
   },
 };
 
-const reducer = (state = initialState, action: any) => {
+const reducer = (state = initialState, action: PopupsAction) => {
   switch (action.type) {
+    case PopupsActionType.FETCH_ALL_POPUPS:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case PopupsActionType.FETCH_ALL_POPUPS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        popupList: { ...action.payload },
+      };
+
+    case PopupsActionType.FETCH_ALL_POPUPS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     default:
       return state;
   }
