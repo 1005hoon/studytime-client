@@ -10,7 +10,7 @@ interface EventsListProps {
 const EventsList: React.FC<EventsListProps> = ({ events, onClick }) => {
   const renderUserLists = () =>
     events.map((event) => (
-      <ListTable.Row key={event.id} onClick={(e) => onClick(event.id)}>
+      <ListTable.Row key={event.id} onClick={() => onClick(event.id)}>
         <ListTable.Data>{event.name}</ListTable.Data>
         <ListTable.Data>
           {event.isDeleted === 0 ? '진행중' : '종료'}

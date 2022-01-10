@@ -9,6 +9,8 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = (props) => {
+  console.log(props);
+
   const renderPages = () =>
     props.pages.map((page) => (
       <Paging.Page
