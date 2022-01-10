@@ -1,6 +1,12 @@
+import { IEvent } from '../../../utils/types/event.interface';
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 import { IPopup } from '../../../utils/types/popup.interface';
 import { PopupsActionType } from '../../action-types';
+
+export interface IFetchAllPopupsResult {
+  events: IEvent[];
+  popups: IPaginatedResult<IPopup>;
+}
 
 interface IFetchPopupsAction {
   type: PopupsActionType.FETCH_ALL_POPUPS;
@@ -8,7 +14,7 @@ interface IFetchPopupsAction {
 
 interface IFetchPopupsSuccessAction {
   type: PopupsActionType.FETCH_ALL_POPUPS_SUCCESS;
-  payload: IPaginatedResult<IPopup>;
+  payload: IFetchAllPopupsResult;
 }
 
 interface IFetchPopupsErrorAction {

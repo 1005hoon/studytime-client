@@ -48,7 +48,8 @@ const reducer = (state = initialState, action: PopupsAction) => {
         ...state,
         loading: false,
         error: null,
-        popupList: { ...action.payload },
+        popupList: { ...action.payload.popups },
+        eventList: [...action.payload.events],
       };
 
     case PopupsActionType.FETCH_ALL_POPUPS_ERROR:
