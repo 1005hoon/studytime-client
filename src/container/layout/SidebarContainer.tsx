@@ -12,6 +12,7 @@ const SidebarContainer: React.FC<SidebarContainerProps> = (props) => {
         <Sidebar.Link to={ROUTES.HOME}>대시보드 홈</Sidebar.Link>
         <Sidebar.Link to={ROUTES.USERS}>사용자 관리</Sidebar.Link>
         <Sidebar.Link to={ROUTES.EVENTS}>이벤트 관리</Sidebar.Link>
+        <Sidebar.Link to={ROUTES.POPUPS}>팝업 관리</Sidebar.Link>
       </Sidebar.Body>
       <Sidebar.Footer />
     </Sidebar>

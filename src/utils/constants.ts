@@ -7,6 +7,8 @@ export enum ROUTES {
   USERS_DETAIL = '/users/:stId',
   EVENTS = '/events',
   EVENTS_DETAIL = '/events/:id',
+  POPUPS = '/popups',
+  POPUPS_DETAIL = '/popups/:id',
   LOGIN = '/login',
   OAUTH = '/oauth',
 }

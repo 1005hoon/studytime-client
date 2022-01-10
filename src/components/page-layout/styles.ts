@@ -16,7 +16,7 @@ export const StyledPageContent = styled.main`
 
 export const StyledContentContainer = styled.div`
   max-width: 1400px;
-  min-width: 1100px;
+  min-width: 760;
   width: 100%;
   margin: 0 auto;
 `;
@@ -29,7 +29,8 @@ export const StyledLayoutRow = styled.div<PageLayoutColumnRowProps>`
 `;
 
 export const StyledLayoutColumn = styled.div`
-  flex: 1;
+  flex: 1 1 400px;
+  flex-wrap: wrap;
 `;
 
 export const StyledLayoutColumnTitle = styled.h2`
