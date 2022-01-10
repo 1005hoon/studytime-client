@@ -13,7 +13,9 @@ interface EventDetailPageProps {}
 
 const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   const params = useParams();
-  const { loading, error, event } = useTypedSelector((state) => state.events);
+  const { loading, error, event, detailList } = useTypedSelector(
+    (state) => state.events
+  );
   const { handleFetchEventDetailsByEventId } = useActions();
   const [detailData, setDetailData] = useState<Partial<IEventDetail>>({
     eventId: 0,
@@ -28,7 +30,9 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('image', detailImage as File);
+    if (detailData) {
+      formData.append('image', detailImage as File);
+    }
 
     Object.keys(detailData).forEach((key) => {
       if (key) {
@@ -65,11 +69,11 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
       <PageLayout.Content>
         <PageLayout.Row>
           <PageLayout.Column title={`${event.name} 상세정보 관리`}>
-            {/* <EventDetailsList
-              details={eventWithDetail.details}
-              selectedEvent={eventWithDetail.event.name}
+            <EventDetailsList
+              details={detailList}
+              selectedEvent={event.name}
               onClick={console.log}
-            /> */}
+            />
           </PageLayout.Column>
           <PageLayout.Column title={`${event.name} 상세정보 생성`}>
             <CreateEventDetailForm
