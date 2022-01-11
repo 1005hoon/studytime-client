@@ -10,6 +10,7 @@ interface PopupsListProps {
 
 const PopupsList: React.FC<PopupsListProps> = (props) => {
   const eventsList = useTypedSelector((state) => state.popups.eventList);
+
   const renderPopupLists = () =>
     props.popups.map((popup) => (
       <ListTable.Row key={popup.id} onClick={() => props.onClick(popup.id)}>
@@ -31,11 +32,11 @@ const PopupsList: React.FC<PopupsListProps> = (props) => {
     <ListTable>
       <ListTable.Header>
         <ListTable.Row>
-          <ListTable.Category width='20%'>팝업 설명</ListTable.Category>
-          <ListTable.Category width='25%'>연결된 이벤트</ListTable.Category>
-          <ListTable.Category width='19%'>팝업 유형</ListTable.Category>
-          <ListTable.Category width='18%'>생성일</ListTable.Category>
-          <ListTable.Category width='18%'>게시</ListTable.Category>
+          <ListTable.Category width='30%'>팝업 설명</ListTable.Category>
+          <ListTable.Category width='20%'>연결된 이벤트</ListTable.Category>
+          <ListTable.Category width='10%'>유형</ListTable.Category>
+          <ListTable.Category width='10%'>생성일</ListTable.Category>
+          <ListTable.Category width='10%'>게시</ListTable.Category>
         </ListTable.Row>
       </ListTable.Header>
       <ListTable.Body>{renderPopupLists()}</ListTable.Body>
