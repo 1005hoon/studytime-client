@@ -1,4 +1,5 @@
 export interface IPopup {
+  [key: string]: number | string | null | Date;
   id: number;
   screen: string | null;
   targetId: number | null;

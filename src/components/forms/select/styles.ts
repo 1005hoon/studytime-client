@@ -9,10 +9,13 @@ export const StyledSelect = styled.select`
   padding: 1.5rem;
   border-radius: 8px;
   width: 100%;
+
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-
+  &::-ms-expand {
+    display: none;
+  }
   background-image: url('${Chevron}');
   background-repeat: no-repeat;
   background-size: 30px contain;
@@ -22,5 +25,9 @@ export const StyledSelect = styled.select`
   &:focus {
     border: none;
     outline: none;
+  }
+
+  option {
+    padding: 1.5rem;
   }
 `;

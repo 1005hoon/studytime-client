@@ -15,7 +15,11 @@ const Select: React.FC<SelectProps> & SelectComposition = (props) => {
         name={props.name}
         onChange={props?.onChange}
         value={props.value}
+        defaultValue=''
       >
+        <option hidden value=''>
+          ------
+        </option>
         {props.children}
       </StyledSelect>
     </StyledSelectContainer>

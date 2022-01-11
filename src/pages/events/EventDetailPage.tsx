@@ -30,7 +30,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    if (detailData) {
+    if (detailImage) {
       formData.append('image', detailImage as File);
     }
 

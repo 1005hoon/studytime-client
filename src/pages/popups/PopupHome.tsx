@@ -29,7 +29,12 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
   const [pages, setPages] = useState<number[]>([]);
   const { handleFetchAllPopups } = useActions();
 
-  const [popupData, setPopupdata] = useState<Partial<IPopup>>();
+  const [popupData, setPopupdata] = useState<Partial<IPopup>>({
+    screen: '',
+    targetId: 0,
+    url: '',
+    description: '',
+  });
   const [popupImage, setPopupImage] = useState<File>();
   const [imagePreview, setImagePreview] = useState('');
 
@@ -49,6 +54,47 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
 
   const handlePopupClick = (popupId: number) => {
     navigate(`/popups/${popupId}`);
+  };
+
+  const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    if (!popupData.screen) {
+      return alert('팝업 유형을 선택해주세요');
+    }
+
+    if (popupData.screen === 'event' && !popupData.screen) {
+      return alert('이동할 이벤트 페이지를 선택해주세요');
+    }
+
+    if (popupData.screen === 'webView' && !popupData.url) {
+      return alert('CTA 링크를 입력하세요');
+    }
+
+    const formData = new FormData();
+
+    if (popupImage) {
+      formData.append('image', popupImage);
+    }
+
+    Object.keys(popupData).forEach((key) => {
+      if (key) {
+        formData.append(key, popupData[key] as string);
+      }
+    });
+  };
+
+  const handlePopupDataChange: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ) => {
+    const { name, value, files } = e.currentTarget;
+
+    if (name === 'image') {
+      const file = (files as FileList)[0];
+      setPopupImage(() => file);
+      setImagePreview(() => URL.createObjectURL(file));
+    } else {
+      setPopupdata((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   useEffect(() => {
@@ -90,7 +136,12 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
             />
           </PageLayout.Column>
           <PageLayout.Column title='새로운 팝업 생성'>
-            <CreatePopupForm />
+            <CreatePopupForm
+              popupData={popupData}
+              imagePreview={imagePreview}
+              onChange={handlePopupDataChange}
+              onSubmit={handleFormSubmit}
+            />
           </PageLayout.Column>
         </PageLayout.Row>
       </PageLayout.Content>
