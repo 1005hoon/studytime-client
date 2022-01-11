@@ -31,13 +31,14 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
 
   const [popupData, setPopupdata] = useState<Partial<IPopup>>({
     screen: '',
-    targetId: 0,
+    targetId: -99,
     url: '',
     description: '',
   });
   const [popupImage, setPopupImage] = useState<File>();
   const [imagePreview, setImagePreview] = useState('');
 
+  const { handlePopupCreate } = useActions();
   const { loading, popupList, error } = useTypedSelector(
     (state) => state.popups
   );
@@ -62,7 +63,7 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
       return alert('팝업 유형을 선택해주세요');
     }
 
-    if (popupData.screen === 'event' && !popupData.screen) {
+    if (popupData.screen === 'event' && popupData.targetId === -99) {
       return alert('이동할 이벤트 페이지를 선택해주세요');
     }
 
@@ -81,6 +82,8 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
         formData.append(key, popupData[key] as string);
       }
     });
+
+    handlePopupCreate(formData);
   };
 
   const handlePopupDataChange: React.ChangeEventHandler<HTMLInputElement> = (

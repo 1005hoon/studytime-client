@@ -22,7 +22,24 @@ interface IFetchPopupsErrorAction {
   payload: string;
 }
 
+interface ICreatePopupAction {
+  type: PopupsActionType.CREATE_POPUP;
+}
+
+interface ICreatePopupSuccessAction {
+  type: PopupsActionType.CREATE_POPUP_SUCCESS;
+  payload: IPopup;
+}
+
+interface ICreatePopupErrorAction {
+  type: PopupsActionType.CREATE_POPUP_ERROR;
+  payload: string;
+}
+
 export type PopupsAction =
+  | ICreatePopupSuccessAction
+  | ICreatePopupErrorAction
+  | ICreatePopupAction
   | IFetchPopupsSuccessAction
   | IFetchPopupsErrorAction
   | IFetchPopupsAction;
