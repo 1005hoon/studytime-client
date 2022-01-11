@@ -59,6 +59,27 @@ const reducer = (state = initialState, action: PopupsAction) => {
         error: action.payload,
       };
 
+    case PopupsActionType.CREATE_POPUP:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case PopupsActionType.CREATE_POPUP_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        popup: action.payload,
+      };
+
+    case PopupsActionType.CREATE_POPUP_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     default:
       return state;
   }
