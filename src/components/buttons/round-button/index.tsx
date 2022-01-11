@@ -4,6 +4,7 @@ import { StyledRoundButton } from './styles';
 export interface RoundButtonProps {
   active?: boolean;
   primary?: boolean;
+  width?: string;
   onClick?: () => void;
 }
 

@@ -31,10 +31,10 @@ export const GlobalStyles = createGlobalStyle`${css`
     left: 50%;
     overflow-y: hidden;
     overflow-x: hidden;
-    width: 640px;
+    width: 64rem;
     max-width: 98rem;
     max-height: 80rem;
-    min-height: 40rem;
+    min-height: 30rem;
     transform: translate(-50%, -50%);
     background-color: #282b30;
     color: #fff;

@@ -11,6 +11,7 @@ import BasePageLayout from '../../container/layout/BasePageLayout';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { IEventDetail } from '../../utils/types/event-detail.interface';
+import UpdateEventForm from '../../container/events/UpdateEventForm';
 
 interface EventDetailPageProps {}
 
@@ -21,7 +22,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   );
   const { handleFetchEventDetailsByEventId, handleCreateEventDetail } =
     useActions();
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [detailImage, setDetailImage] = useState<File>();
   const [imagePreview, setImagePreview] = useState('');
   const [detailData, setDetailData] = useState<Partial<IEventDetail>>({
@@ -107,12 +108,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
           overlayClassName='Overlay'
         >
           <h2>이벤트 수정하기</h2>
-          <CreateEventDetailForm
-            imagePreview={imagePreview}
-            eventDetail={detailData}
-            onChange={onChangeDetailData}
-            onSubmit={onSubmit}
-          />
+          <UpdateEventForm event={event} />
         </Modal>
         <PageLayout.Row>
           <PageLayout.Column title={`${event.name} 상세정보 관리`}>

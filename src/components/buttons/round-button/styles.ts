@@ -11,6 +11,7 @@ export const StyledRoundButton = styled.button<RoundButtonProps>`
   border: 2px solid transparent;
   outline: none;
   padding: 0.7rem 2rem;
+  width: ${({ width }) => (width ? width : '')};
   background-color: ${(props) => (props.primary ? '#6800FF' : '#fff')};
   color: ${(props) => (props.primary ? '#fff' : '#FF8910')};
   border-radius: 32px;
