@@ -26,37 +26,60 @@ const CreateEventDetailForm: React.FC<CreateEventDetailFormProps> = (props) => {
         </Select>
       </InputForm.Group>
       <InputForm.Group>
-        <label htmlFor='description'>이벤트 이름</label>
+        <label htmlFor='description'>상세내용</label>
         <input
           type='text'
           name='description'
-          placeholder='이벤트 이름을 입력하세요. 예) 동기부여 X Hoonnote 특별 이벤트'
+          placeholder='상세내용을 입력하세요. 예) 동기부여 X Hoonnote 특별 이벤트용 배너'
           value={props.eventDetail.description as string}
           onChange={props.onChange}
         />
       </InputForm.Group>
-      <InputForm.Group>
-        <label htmlFor='url1'>CTA 링크 1</label>
-        <input
-          type='url'
-          name='url1'
-          placeholder='첫번째 CTA에 적용할 링크 '
-          value={props.eventDetail.url1 as string}
-          onChange={props.onChange}
-        />
-      </InputForm.Group>
       {props.eventDetail.type === '상세' && (
-        <InputForm.Group>
-          <label htmlFor='url2'>CTA 링크 2</label>
-          <input
-            type='url'
-            name='url2'
-            placeholder='두번째 CTA에 적용할 링크'
-            value={props.eventDetail.url2 as string}
-            onChange={props.onChange}
-          />
-        </InputForm.Group>
+        <>
+          <InputForm.Group>
+            <label htmlFor='urlButtonName1'>첫번째 버튼 문구</label>
+            <input
+              type='text'
+              name='urlButtonName1'
+              placeholder='첫번째(좌측) 버튼 문구 '
+              value={props.eventDetail.urlButtonName1 as string}
+              onChange={props.onChange}
+            />
+          </InputForm.Group>
+          <InputForm.Group>
+            <label htmlFor='url1'>CTA 링크 1</label>
+            <input
+              type='url'
+              name='url1'
+              placeholder='첫번째 CTA에 적용할 링크 '
+              value={props.eventDetail.url1 as string}
+              onChange={props.onChange}
+            />
+          </InputForm.Group>
+          <InputForm.Group>
+            <label htmlFor='urlButtonName2'>두번째 버튼 문구</label>
+            <input
+              type='text'
+              name='urlButtonName2'
+              placeholder='두번째(우측) 버튼 문구 '
+              value={props.eventDetail.urlButtonName2 as string}
+              onChange={props.onChange}
+            />
+          </InputForm.Group>
+          <InputForm.Group>
+            <label htmlFor='url2'>CTA 링크 2</label>
+            <input
+              type='url'
+              name='url2'
+              placeholder='두번째 CTA에 적용할 링크'
+              value={props.eventDetail.url2 as string}
+              onChange={props.onChange}
+            />
+          </InputForm.Group>
+        </>
       )}
+
       <InputForm.Group>
         <label htmlFor='img_url'>이미지 등록</label>
         <input
@@ -66,10 +89,15 @@ const CreateEventDetailForm: React.FC<CreateEventDetailFormProps> = (props) => {
           onChange={props.onChange}
         />
       </InputForm.Group>
-      <InputForm.Group>
-        <label>이미지 미리보기</label>
-        <img src={props.imagePreview} style={{ width: '250px' }} />
-      </InputForm.Group>
+      {props.imagePreview && (
+        <InputForm.Group>
+          <label>이미지 미리보기</label>
+          <img
+            src={props.imagePreview}
+            style={{ width: '250px', maxHeight: '250px', objectFit: 'cover' }}
+          />
+        </InputForm.Group>
+      )}
 
       <InputForm.Group>
         <RoundButton primary>생성하기</RoundButton>

@@ -33,6 +33,20 @@ interface ICreateEventErrorAction {
   payload: string;
 }
 
+interface ICreateEventDetailAction {
+  type: EventAcionType.CREATE_EVENT_DETAIL;
+}
+
+interface ICreateEventDetailSuccessAction {
+  type: EventAcionType.CREATE_EVENT_DETAIL_SUCCESS;
+  payload: IEventDetail;
+}
+
+interface ICreateEventDetailErrorAction {
+  type: EventAcionType.CREATE_EVENT_DETAIL_ERROR;
+  payload: string;
+}
+
 interface IFetchEventDetailByEventIdAction {
   type: EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID;
 }
@@ -54,6 +68,9 @@ export type EventActions =
   | IFetchEventDetailByEventIdAction
   | IFetchEventDetailByEventIdErrorAction
   | IFetchEventDetailByEventIdSuccessAction
+  | ICreateEventDetailAction
+  | ICreateEventDetailErrorAction
+  | ICreateEventDetailSuccessAction
   | ICreateEventAction
   | ICreateEventErrorAction
   | ICreateEventSuccessAction

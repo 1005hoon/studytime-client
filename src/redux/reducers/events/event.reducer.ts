@@ -7,6 +7,7 @@ import { IInitialReducerState } from '../interfaces/initial-state.interface';
 
 export interface IEventState extends IInitialReducerState {
   event: IEvent;
+  eventDetail: IEventDetail;
   eventList: IPaginatedResult<IEvent>;
   detailList: IEventDetail[];
 }
@@ -17,6 +18,19 @@ const initialState: IEventState = {
   event: {
     id: 0,
     name: '',
+    createdAt: new Date(),
+    isDeleted: 0,
+  },
+  eventDetail: {
+    id: 0,
+    eventId: 0,
+    type: '',
+    img_url: '',
+    url1: '',
+    urlButtonName1: '',
+    url2: '',
+    urlButtonName2: '',
+    description: '',
     createdAt: new Date(),
     isDeleted: 0,
   },
@@ -50,6 +64,25 @@ const reducer = (state: IEventState = initialState, action: EventActions) => {
         loading: false,
         error: null,
         event: action.payload,
+      };
+    case EventAcionType.CREATE_EVENT_DETAIL:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case EventAcionType.CREATE_EVENT_DETAIL_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case EventAcionType.CREATE_EVENT_DETAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        eventDetail: action.payload,
       };
 
     case EventAcionType.FETCH_EVENTS:

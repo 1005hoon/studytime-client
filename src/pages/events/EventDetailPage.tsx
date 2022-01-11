@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Loading from '../../components/loading';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
 import CreateEventDetailForm from '../../container/events/CreateEventDetailForm';
@@ -16,12 +17,15 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   const { loading, error, event, detailList } = useTypedSelector(
     (state) => state.events
   );
-  const { handleFetchEventDetailsByEventId } = useActions();
+  const { handleFetchEventDetailsByEventId, handleCreateEventDetail } =
+    useActions();
   const [detailData, setDetailData] = useState<Partial<IEventDetail>>({
-    eventId: 0,
     type: '',
+    eventId: 0,
     url1: '',
+    urlButtonName1: '',
     url2: '',
+    urlButtonName2: '',
     description: '',
   });
   const [detailImage, setDetailImage] = useState<File>();
@@ -29,7 +33,21 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+
+    if (!detailData.type) {
+      return alert('이벤트 상세정보 유형을 선택하세요');
+    }
+
+    if (!detailData.description) {
+      return alert('간략한 설명을 작성해주세요');
+    }
+
+    if (detailData.type === '배너' && !detailImage) {
+      return alert('배너용 이미지를 업로드해주세요');
+    }
+
     const formData = new FormData();
+
     if (detailImage) {
       formData.append('image', detailImage as File);
     }
@@ -40,7 +58,11 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
       }
     });
 
-    // onCreateEventDetail(detail.eventId as number, formData);
+    if (!window.confirm('상세정보를 생성할까요?')) {
+      return;
+    }
+
+    handleCreateEventDetail(event.id, formData);
   };
 
   const onChangeDetailData: React.ChangeEventHandler<HTMLInputElement> = (
@@ -59,7 +81,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
 
   useEffect(() => {
     const id = params.id as string;
-
+    setDetailData((prev) => ({ ...prev, eventId: +id }));
     handleFetchEventDetailsByEventId(+id);
   }, []);
 
@@ -67,6 +89,8 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     <BasePageLayout>
       <PageHeader title='이벤트 관리' />
       <PageLayout.Content>
+        {loading ? <Loading /> : <Loading.ReleaseBody />}
+        {error && <p>{error}</p>}
         <PageLayout.Row>
           <PageLayout.Column title={`${event.name} 상세정보 관리`}>
             <EventDetailsList

@@ -83,3 +83,37 @@ export const handleFetchEventDetailsByEventId =
       });
     }
   };
+
+export const handleCreateEventDetail =
+  (eventId: number, dto: any) => async (dispatch: Dispatch<EventActions>) => {
+    dispatch({ type: EventAcionType.CREATE_EVENT_DETAIL });
+
+    try {
+      const { data } = await request<IEventDetail>(
+        'POST',
+        `/events/${eventId}/details`,
+        {},
+        dto
+      );
+
+      dispatch({
+        type: EventAcionType.CREATE_EVENT_DETAIL_SUCCESS,
+        payload: data,
+      });
+
+      const { data: eventDetails } = await request<{
+        event: IEvent;
+        details: IEventDetail[];
+      }>('GET', `/events/${eventId}`);
+
+      dispatch({
+        type: EventAcionType.FETCH_EVENT_DETAILS_BY_EVENT_ID_SUCCESS,
+        payload: eventDetails,
+      });
+    } catch (error) {
+      dispatch({
+        type: EventAcionType.CREATE_EVENT_DETAIL_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };
