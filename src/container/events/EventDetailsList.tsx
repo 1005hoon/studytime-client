@@ -33,7 +33,7 @@ const EventDetailsList: React.FC<EventDetailsListProps> = ({
       <ListTable>
         <ListTable.Header>
           <ListTable.Row>
-            <ListTable.Category width='15%'>이름</ListTable.Category>
+            <ListTable.Category width='20%'>이름</ListTable.Category>
             <ListTable.Category width='15%'>유형</ListTable.Category>
             <ListTable.Category width='30%'>설명</ListTable.Category>
             <ListTable.Category width='20%'>생성일</ListTable.Category>

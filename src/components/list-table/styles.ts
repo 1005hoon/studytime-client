@@ -21,7 +21,13 @@ export const StyledListTableHeader = styled.thead`
 `;
 
 export const StyledCategory = styled.th<ListTableCategoryProps>`
-  padding: 17px 20px;
+  padding: 17px 0;
+  &:first-child {
+    padding-left: 20px;
+  }
+  &:last-child {
+    padding-right: 20px;
+  }
   width: ${({ width }) => (width ? width : 'auto')};
   border-bottom: 1px solid #31363e;
   font-weight: 300;
@@ -53,12 +59,13 @@ export const StyledRow = styled.tr``;
 export const StyledData = styled.td`
   background-color: #2c3037;
   height: 65px;
-  padding: 10px 20px;
+  padding: 10px 10px 10px 0;
   font-size: 14px;
   letter-spacing: -0.47px;
   text-align: left;
 
   &:first-child {
+    padding-left: 20px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
   }

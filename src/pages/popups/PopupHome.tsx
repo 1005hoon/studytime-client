@@ -71,6 +71,10 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
       return alert('CTA 링크를 입력하세요');
     }
 
+    if (!popupImage) {
+      return alert('팝업 이미지를 선택해주세요');
+    }
+
     const formData = new FormData();
 
     if (popupImage) {
