@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import Modal from 'react-modal';
 import HomePage from '../pages/dashboard/HomePage';
 import LoginPage from '../pages/login/LoginPage';
 import OAuthCallbackPage from '../pages/login/OAuthCallbackPage';
@@ -10,6 +11,8 @@ import EventDetailPage from '../pages/events/EventDetailPage';
 import PopupHome from '../pages/popups/PopupHome';
 
 function App() {
+  Modal.setAppElement('#modal');
+
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<HomePage />}></Route>

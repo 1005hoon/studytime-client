@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Modal from 'react-modal';
+import RoundButton from '../../components/buttons/round-button';
 import Loading from '../../components/loading';
 import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
@@ -19,6 +21,9 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   );
   const { handleFetchEventDetailsByEventId, handleCreateEventDetail } =
     useActions();
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [detailImage, setDetailImage] = useState<File>();
+  const [imagePreview, setImagePreview] = useState('');
   const [detailData, setDetailData] = useState<Partial<IEventDetail>>({
     type: '',
     eventId: 0,
@@ -28,8 +33,6 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     urlButtonName2: '',
     description: '',
   });
-  const [detailImage, setDetailImage] = useState<File>();
-  const [imagePreview, setImagePreview] = useState('');
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -87,10 +90,30 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
 
   return (
     <BasePageLayout>
-      <PageHeader title='이벤트 관리' />
+      <PageHeader title={`${event.name} 관리`}>
+        <RoundButton onClick={() => setIsModalOpen(true)} primary>
+          정보 수정하기
+        </RoundButton>
+      </PageHeader>
       <PageLayout.Content>
         {loading ? <Loading /> : <Loading.ReleaseBody />}
         {error && <p>{error}</p>}
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          onAfterOpen={() => (document.body.style.overflow = 'hidden')}
+          onAfterClose={() => (document.body.style.overflow = 'unset')}
+          className='Modal'
+          overlayClassName='Overlay'
+        >
+          <h2>이벤트 수정하기</h2>
+          <CreateEventDetailForm
+            imagePreview={imagePreview}
+            eventDetail={detailData}
+            onChange={onChangeDetailData}
+            onSubmit={onSubmit}
+          />
+        </Modal>
         <PageLayout.Row>
           <PageLayout.Column title={`${event.name} 상세정보 관리`}>
             <EventDetailsList

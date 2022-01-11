@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro';
 
-export const StyledInputFormContainer = styled.div`
-  margin-top: 30px;
+export const StyledInputFormContainer = styled.div<{ width: string }>`
+  margin: 30px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: ${({ width }) => (width ? width : '100%')};
 `;
 
 export const StyledInputFormBody = styled.form`
@@ -21,9 +21,12 @@ export const StyledInputFormBody = styled.form`
   border-radius: 12px;
 `;
 
-export const StyledInputFormGroup = styled.div`
+export const StyledInputFormGroup = styled.div<{ justify?: boolean }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ justify }) => (justify ? 'row' : 'column')};
+  justify-content: ${({ justify }) => (justify ? 'space-between' : '')};
+  gap: ${({ justify }) => (justify ? '10px' : '')};
+
   width: 100%;
   margin-bottom: 2rem;
 

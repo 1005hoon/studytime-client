@@ -7,14 +7,15 @@ import {
 
 interface InputFormProps {
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
+  width?: string;
 }
 interface InputFormComposition {
-  Group: React.FC;
+  Group: React.FC<{ justify?: boolean }>;
 }
 
 const InputForm: React.FC<InputFormProps> & InputFormComposition = (props) => {
   return (
-    <StyledInputFormContainer>
+    <StyledInputFormContainer width={props.width ?? ''}>
       <StyledInputFormBody onSubmit={props?.onSubmit}>
         {props.children}
       </StyledInputFormBody>
@@ -23,6 +24,10 @@ const InputForm: React.FC<InputFormProps> & InputFormComposition = (props) => {
 };
 
 InputForm.Group = function InputFormGroup(props) {
-  return <StyledInputFormGroup>{props.children}</StyledInputFormGroup>;
+  return (
+    <StyledInputFormGroup justify={props.justify}>
+      {props.children}
+    </StyledInputFormGroup>
+  );
 };
 export default InputForm;

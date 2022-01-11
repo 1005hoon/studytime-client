@@ -23,4 +23,32 @@ export const GlobalStyles = createGlobalStyle`${css`
   body {
     outline: none;
   }
+
+  .Modal {
+    position: absolute;
+    padding: 3rem 5rem 2rem;
+    top: 50%;
+    left: 50%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 640px;
+    max-width: 98rem;
+    max-height: 80rem;
+    min-height: 40rem;
+    transform: translate(-50%, -50%);
+    background-color: #282b30;
+    color: #fff;
+    border-radius: 15px;
+  }
+
+  .Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+  }
 `}`;

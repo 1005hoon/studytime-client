@@ -12,7 +12,6 @@ export const StyledPageHeader = styled.header`
 
 export const StyledPageHeaderContainer = styled.div`
   max-width: 1400px;
-  /* min-width: 1100px; */
   width: 100%;
   margin: 0 auto;
   display: flex;
