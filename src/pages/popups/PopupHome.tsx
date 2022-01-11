@@ -59,6 +59,7 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
 
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+
     if (!popupData.screen) {
       return alert('팝업 유형을 선택해주세요');
     }
@@ -71,8 +72,16 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
       return alert('CTA 링크를 입력하세요');
     }
 
+    if (!popupData.description) {
+      return alert('팝업 식별을 위한 간단한 설명을 작성해주세요');
+    }
+
     if (!popupImage) {
       return alert('팝업 이미지를 선택해주세요');
+    }
+
+    if (!window.confirm('팝업을 생성할까요?')) {
+      return;
     }
 
     const formData = new FormData();
