@@ -67,6 +67,17 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     }
 
     handleCreateEventDetail(event.id, formData);
+    setDetailData(() => ({
+      type: '',
+      eventId: 0,
+      url1: '',
+      urlButtonName1: '',
+      url2: '',
+      urlButtonName2: '',
+      description: '',
+    }));
+    setImagePreview(() => '');
+    setDetailImage(() => undefined);
   };
 
   const onChangeDetailData: React.ChangeEventHandler<HTMLInputElement> = (
@@ -110,23 +121,25 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
           <h2>이벤트 수정하기</h2>
           <UpdateEventForm event={event} />
         </Modal>
-        <PageLayout.Row>
-          <PageLayout.Column title={`${event.name} 상세정보 관리`}>
-            <EventDetailsList
-              details={detailList}
-              selectedEvent={event.name}
-              onClick={console.log}
-            />
-          </PageLayout.Column>
-          <PageLayout.Column title={`${event.name} 상세정보 생성`}>
-            <CreateEventDetailForm
-              imagePreview={imagePreview}
-              eventDetail={detailData}
-              onChange={onChangeDetailData}
-              onSubmit={onSubmit}
-            />
-          </PageLayout.Column>
-        </PageLayout.Row>
+        {event.id !== 0 && event.isDeleted === 0 && (
+          <PageLayout.Row>
+            <PageLayout.Column title={`${event.name} 상세정보 관리`}>
+              <EventDetailsList
+                details={detailList}
+                selectedEvent={event.name}
+                onClick={console.log}
+              />
+            </PageLayout.Column>
+            <PageLayout.Column title={`${event.name} 상세정보 생성`}>
+              <CreateEventDetailForm
+                imagePreview={imagePreview}
+                eventDetail={detailData}
+                onChange={onChangeDetailData}
+                onSubmit={onSubmit}
+              />
+            </PageLayout.Column>
+          </PageLayout.Row>
+        )}
       </PageLayout.Content>
     </BasePageLayout>
   );

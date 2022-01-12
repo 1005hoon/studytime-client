@@ -137,3 +137,17 @@ export const handleUpdateEvent =
       });
     }
   };
+
+export const handleDeleteEvent =
+  (id: number) => async (dispatch: Dispatch<EventActions>) => {
+    dispatch({ type: EventAcionType.DELETE_EVENT });
+    try {
+      await request('DELETE', `/events/${id}`);
+      dispatch({ type: EventAcionType.DELETE_EVENT_SUCCESS });
+    } catch (error) {
+      dispatch({
+        type: EventAcionType.DELETE_EVENT_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };

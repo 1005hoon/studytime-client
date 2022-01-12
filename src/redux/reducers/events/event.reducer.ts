@@ -103,6 +103,7 @@ const reducer = (state: IEventState = initialState, action: EventActions) => {
         ...state,
         loading: false,
         error: null,
+        event: { ...initialState.event },
       };
 
     case EventAcionType.CREATE_EVENT_DETAIL:
