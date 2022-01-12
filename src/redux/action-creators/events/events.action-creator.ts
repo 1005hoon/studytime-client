@@ -84,6 +84,26 @@ export const handleFetchEventDetailsByEventId =
     }
   };
 
+export const handleFetchEventDetailByDetailId =
+  (detailId: number) => async (dispatch: Dispatch<EventActions>) => {
+    dispatch({ type: EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID });
+
+    try {
+      const { data } = await request<IEventDetail>(
+        'GET',
+        `/event-details/${detailId}`
+      );
+      dispatch({
+        type: EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };
 export const handleCreateEventDetail =
   (eventId: number, dto: any) => async (dispatch: Dispatch<EventActions>) => {
     dispatch({ type: EventAcionType.CREATE_EVENT_DETAIL });

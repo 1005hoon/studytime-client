@@ -42,6 +42,10 @@ export const StyledInputFormGroup = styled.div<{ justify?: boolean }>`
     background-color: #f3f6f7;
     border-radius: 8px;
 
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
     &:focus {
       border: none;
       outline: none;

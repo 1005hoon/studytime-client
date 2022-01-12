@@ -9,6 +9,7 @@ import EventsHome from '../pages/events/EventsHome';
 import { ROUTES } from '../utils/constants';
 import EventDetailPage from '../pages/events/EventDetailPage';
 import PopupHome from '../pages/popups/PopupHome';
+import EventDetailByIdPage from '../pages/events/EventDetailByIdPage';
 
 function App() {
   Modal.setAppElement('#modal');
@@ -19,7 +20,11 @@ function App() {
       <Route path={ROUTES.USERS} element={<UsersHomePage />}></Route>
       <Route path={ROUTES.USERS_DETAIL} element={<UserDetailPage />}></Route>
       <Route path={ROUTES.EVENTS} element={<EventsHome />}></Route>
-      <Route path={ROUTES.EVENTS_DETAIL} element={<EventDetailPage />}></Route>
+      <Route path={ROUTES.EVENTS_DETAILS} element={<EventDetailPage />}></Route>
+      <Route
+        path={ROUTES.EVENTS_DETAIL}
+        element={<EventDetailByIdPage />}
+      ></Route>
       <Route path={ROUTES.POPUPS} element={<PopupHome />}></Route>
       <Route path={ROUTES.LOGIN} element={<LoginPage />}></Route>
       <Route path={ROUTES.OAUTH} element={<OAuthCallbackPage />} />

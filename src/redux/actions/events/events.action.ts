@@ -64,6 +64,20 @@ interface IFetchEventDetailByEventIdErrorAction {
   payload: string;
 }
 
+interface IFetchEventDetailByDetailIdAction {
+  type: EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID;
+}
+
+interface IFetchEventDetailByDetailIdSuccessAction {
+  type: EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID_SUCCESS;
+  payload: IEventDetail;
+}
+
+interface IFetchEventDetailByDetailIdErrorAction {
+  type: EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID_ERROR;
+  payload: string;
+}
+
 interface IUpdateEventAction {
   type: EventAcionType.UPDATE_EVENT;
 }
@@ -92,6 +106,9 @@ interface IDeleteEventErrorAction {
 }
 
 export type EventActions =
+  | IFetchEventDetailByDetailIdAction
+  | IFetchEventDetailByDetailIdErrorAction
+  | IFetchEventDetailByDetailIdSuccessAction
   | IFetchEventDetailByEventIdAction
   | IFetchEventDetailByEventIdErrorAction
   | IFetchEventDetailByEventIdSuccessAction

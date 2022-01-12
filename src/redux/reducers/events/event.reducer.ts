@@ -167,6 +167,26 @@ const reducer = (state: IEventState = initialState, action: EventActions) => {
         event: { ...action.payload.event },
       };
 
+    case EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case EventAcionType.FETCH_EVENT_DETAIL_BY_DETAIL_ID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        eventDetail: action.payload,
+      };
+
     default:
       return state;
   }

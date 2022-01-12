@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Modal from 'react-modal';
 import RoundButton from '../../components/buttons/round-button';
 import Loading from '../../components/loading';
@@ -17,6 +17,7 @@ interface EventDetailPageProps {}
 
 const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   const params = useParams();
+  const navigate = useNavigate();
   const { loading, error, event, detailList } = useTypedSelector(
     (state) => state.events
   );
@@ -94,6 +95,10 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     }
   };
 
+  const handleNavigateDetail = (detailId: number) => {
+    navigate(`/events/${event.id}/details/${detailId}`);
+  };
+
   useEffect(() => {
     const id = params.id as string;
     setDetailData((prev) => ({ ...prev, eventId: +id }));
@@ -127,7 +132,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
               <EventDetailsList
                 details={detailList}
                 selectedEvent={event.name}
-                onClick={console.log}
+                onClick={handleNavigateDetail}
               />
             </PageLayout.Column>
             <PageLayout.Column title={`${event.name} 상세정보 생성`}>
