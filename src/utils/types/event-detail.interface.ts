@@ -3,7 +3,7 @@ export interface IEventDetail {
   id: number;
   eventId: number;
   type: string | null;
-  img_url: string;
+  imgUrl: string;
   url1: string | null;
   urlButtonName1: string;
   url2: string | null;

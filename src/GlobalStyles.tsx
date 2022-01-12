@@ -29,7 +29,7 @@ export const GlobalStyles = createGlobalStyle`${css`
     padding: 3rem 5rem 2rem;
     top: 50%;
     left: 50%;
-    overflow-y: hidden;
+    overflow-y: scroll;
     overflow-x: hidden;
     width: 64rem;
     max-width: 98rem;

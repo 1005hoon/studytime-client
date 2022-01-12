@@ -92,6 +92,20 @@ interface IUpdateEventErrorAction {
   payload: string;
 }
 
+interface IUpdateEventDetailAction {
+  type: EventAcionType.UPDATE_EVENT_DETAIL;
+}
+
+interface IUpdateEventDetailSuccessAction {
+  type: EventAcionType.UPDATE_EVENT_DETAIL_SUCCESS;
+  payload: IEventDetail;
+}
+
+interface IUpdateEventDetailErrorAction {
+  type: EventAcionType.UPDATE_EVENT_DETAIL_ERROR;
+  payload: string;
+}
+
 interface IDeleteEventAction {
   type: EventAcionType.DELETE_EVENT;
 }
@@ -115,6 +129,9 @@ export type EventActions =
   | IDeleteEventAction
   | IDeleteEventErrorAction
   | IDeleteEventSuccessAction
+  | IUpdateEventDetailAction
+  | IUpdateEventDetailErrorAction
+  | IUpdateEventDetailSuccessAction
   | IUpdateEventAction
   | IUpdateEventErrorAction
   | IUpdateEventSuccessAction

@@ -158,6 +158,27 @@ export const handleUpdateEvent =
     }
   };
 
+export const handleUpdateEventDetail =
+  (id: number, dto: any) => async (dispatch: Dispatch<EventActions>) => {
+    dispatch({ type: EventAcionType.UPDATE_EVENT_DETAIL });
+    try {
+      const { data } = await request<IEventDetail>(
+        'PATCH',
+        `/event-details/${id}`,
+        {},
+        dto
+      );
+      dispatch({
+        type: EventAcionType.UPDATE_EVENT_DETAIL_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: EventAcionType.UPDATE_EVENT_DETAIL_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };
 export const handleDeleteEvent =
   (id: number) => async (dispatch: Dispatch<EventActions>) => {
     dispatch({ type: EventAcionType.DELETE_EVENT });

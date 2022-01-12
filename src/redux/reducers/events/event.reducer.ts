@@ -25,7 +25,7 @@ const initialState: IEventState = {
     id: 0,
     eventId: 0,
     type: '',
-    img_url: '',
+    imgUrl: '',
     url1: '',
     urlButtonName1: '',
     url2: '',
@@ -84,6 +84,26 @@ const reducer = (state: IEventState = initialState, action: EventActions) => {
         loading: false,
         error: null,
         event: action.payload,
+      };
+
+    case EventAcionType.UPDATE_EVENT_DETAIL:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case EventAcionType.UPDATE_EVENT_DETAIL_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case EventAcionType.UPDATE_EVENT_DETAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        eventDetail: action.payload,
       };
 
     case EventAcionType.DELETE_EVENT:
