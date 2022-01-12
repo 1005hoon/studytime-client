@@ -65,6 +65,46 @@ const reducer = (state: IEventState = initialState, action: EventActions) => {
         error: null,
         event: action.payload,
       };
+
+    case EventAcionType.UPDATE_EVENT:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case EventAcionType.UPDATE_EVENT_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case EventAcionType.UPDATE_EVENT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        event: action.payload,
+      };
+
+    case EventAcionType.DELETE_EVENT:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case EventAcionType.DELETE_EVENT_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case EventAcionType.DELETE_EVENT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
+
     case EventAcionType.CREATE_EVENT_DETAIL:
       return {
         ...state,

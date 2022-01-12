@@ -117,3 +117,23 @@ export const handleCreateEventDetail =
       });
     }
   };
+
+export const handleUpdateEvent =
+  (dto: Partial<IEvent>) => async (dispatch: Dispatch<EventActions>) => {
+    dispatch({ type: EventAcionType.UPDATE_EVENT });
+    try {
+      const { data } = await request<IEvent>(
+        'PATCH',
+        `/events/${dto.id}`,
+        {},
+        { ...dto }
+      );
+
+      dispatch({ type: EventAcionType.UPDATE_EVENT_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: EventAcionType.UPDATE_EVENT_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };

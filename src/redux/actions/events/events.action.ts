@@ -64,10 +64,43 @@ interface IFetchEventDetailByEventIdErrorAction {
   payload: string;
 }
 
+interface IUpdateEventAction {
+  type: EventAcionType.UPDATE_EVENT;
+}
+
+interface IUpdateEventSuccessAction {
+  type: EventAcionType.UPDATE_EVENT_SUCCESS;
+  payload: IEvent;
+}
+
+interface IUpdateEventErrorAction {
+  type: EventAcionType.UPDATE_EVENT_ERROR;
+  payload: string;
+}
+
+interface IDeleteEventAction {
+  type: EventAcionType.DELETE_EVENT;
+}
+
+interface IDeleteEventSuccessAction {
+  type: EventAcionType.DELETE_EVENT_SUCCESS;
+}
+
+interface IDeleteEventErrorAction {
+  type: EventAcionType.DELETE_EVENT_ERROR;
+  payload: string;
+}
+
 export type EventActions =
   | IFetchEventDetailByEventIdAction
   | IFetchEventDetailByEventIdErrorAction
   | IFetchEventDetailByEventIdSuccessAction
+  | IDeleteEventAction
+  | IDeleteEventErrorAction
+  | IDeleteEventSuccessAction
+  | IUpdateEventAction
+  | IUpdateEventErrorAction
+  | IUpdateEventSuccessAction
   | ICreateEventDetailAction
   | ICreateEventDetailErrorAction
   | ICreateEventDetailSuccessAction

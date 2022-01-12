@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import RoundButton from '../../components/buttons/round-button';
 import InputForm from '../../components/forms/input-form';
+import Loading from '../../components/loading';
+import { useActions } from '../../hooks/use-actions';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { IEvent } from '../../utils/types/event.interface';
 
 interface UpdateEventFormProps {
@@ -9,6 +12,8 @@ interface UpdateEventFormProps {
 
 const UpdateEventForm: React.FC<UpdateEventFormProps> = (props) => {
   const [eventData, setEventData] = useState({ ...props.event });
+  const { handleUpdateEvent } = useActions();
+  const { event, loading, error } = useTypedSelector((state) => state.events);
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, name } = e.target;
@@ -22,11 +27,13 @@ const UpdateEventForm: React.FC<UpdateEventFormProps> = (props) => {
 
   const onUpdate = () => {
     if (window.confirm('이벤트 정보를 수정할까요?')) {
+      handleUpdateEvent({ ...eventData });
     }
   };
 
   return (
     <InputForm onSubmit={(e) => e.preventDefault()}>
+      {loading ? <Loading /> : <Loading.ReleaseBody />}
       <InputForm.Group>
         <label htmlFor='name'>이름</label>
         <input
