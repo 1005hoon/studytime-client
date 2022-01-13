@@ -28,6 +28,24 @@ export const handleFetchAllPopups =
     }
   };
 
+export const handleFetchPopupById =
+  (id: number) => async (dispatch: Dispatch<PopupsAction>) => {
+    dispatch({ type: PopupsActionType.FETCH_POPUP_BY_ID });
+
+    try {
+      const { data } = await request<IPopup>('GET', `/popups/${id}`);
+      dispatch({
+        type: PopupsActionType.FETCH_POPUP_BY_ID_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: PopupsActionType.FETCH_POPUP_BY_ID_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };
+
 export const handlePopupCreate =
   (formData: any) => async (dispatch: Dispatch<PopupsAction>) => {
     dispatch({ type: PopupsActionType.CREATE_POPUP });

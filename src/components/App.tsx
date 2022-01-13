@@ -10,6 +10,7 @@ import { ROUTES } from '../utils/constants';
 import EventDetailPage from '../pages/events/EventDetailPage';
 import PopupHome from '../pages/popups/PopupHome';
 import EventDetailByIdPage from '../pages/events/EventDetailByIdPage';
+import PopupDetailPage from '../pages/popups/PopupDetailPage';
 
 function App() {
   Modal.setAppElement('#modal');
@@ -26,6 +27,7 @@ function App() {
         element={<EventDetailByIdPage />}
       ></Route>
       <Route path={ROUTES.POPUPS} element={<PopupHome />}></Route>
+      <Route path={ROUTES.POPUPS_DETAIL} element={<PopupDetailPage />}></Route>
       <Route path={ROUTES.LOGIN} element={<LoginPage />}></Route>
       <Route path={ROUTES.OAUTH} element={<OAuthCallbackPage />} />
     </Routes>

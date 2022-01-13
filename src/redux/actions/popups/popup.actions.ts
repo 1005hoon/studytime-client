@@ -22,6 +22,20 @@ interface IFetchPopupsErrorAction {
   payload: string;
 }
 
+interface IFetchPopupByIdAction {
+  type: PopupsActionType.FETCH_POPUP_BY_ID;
+}
+
+interface IFetchPopupByIdSuccessAction {
+  type: PopupsActionType.FETCH_POPUP_BY_ID_SUCCESS;
+  payload: IPopup;
+}
+
+interface IFetchPopupByIdErrorAction {
+  type: PopupsActionType.FETCH_POPUP_BY_ID_ERROR;
+  payload: string;
+}
+
 interface ICreatePopupAction {
   type: PopupsActionType.CREATE_POPUP;
 }
@@ -40,6 +54,9 @@ export type PopupsAction =
   | ICreatePopupSuccessAction
   | ICreatePopupErrorAction
   | ICreatePopupAction
+  | IFetchPopupByIdSuccessAction
+  | IFetchPopupByIdErrorAction
+  | IFetchPopupByIdAction
   | IFetchPopupsSuccessAction
   | IFetchPopupsErrorAction
   | IFetchPopupsAction;
