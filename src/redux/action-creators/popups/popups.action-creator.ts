@@ -74,3 +74,21 @@ export const handlePopupCreate =
       });
     }
   };
+
+export const handleUpdatePopupById =
+  (id: number, dto: any) => async (dispatch: Dispatch<PopupsAction>) => {
+    dispatch({ type: PopupsActionType.UPDATE_POPUP_BY_ID });
+
+    try {
+      const { data } = await request<IPopup>('PATCH', `/popups/${id}`, {}, dto);
+      dispatch({
+        type: PopupsActionType.UPDATE_POPUP_BY_ID_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: PopupsActionType.UPDATE_POPUP_BY_ID_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };

@@ -50,7 +50,40 @@ interface ICreatePopupErrorAction {
   payload: string;
 }
 
+interface IUpdatePopupByIdAction {
+  type: PopupsActionType.UPDATE_POPUP_BY_ID;
+}
+
+interface IUpdatePopupByIdSuccessAction {
+  type: PopupsActionType.UPDATE_POPUP_BY_ID_SUCCESS;
+  payload: IPopup;
+}
+
+interface IUpdatePopupByIdErrorAction {
+  type: PopupsActionType.UPDATE_POPUP_BY_ID_ERROR;
+  payload: string;
+}
+
+interface IDeletePopupByIdAction {
+  type: PopupsActionType.DELETE_POPUP_BY_ID;
+}
+
+interface IDeletePopupByIdSuccessAction {
+  type: PopupsActionType.DELETE_POPUP_BY_ID_SUCCESS;
+}
+
+interface IDeletePopupByIdErrorAction {
+  type: PopupsActionType.DELETE_POPUP_BY_ID_ERROR;
+  payload: string;
+}
+
 export type PopupsAction =
+  | IDeletePopupByIdSuccessAction
+  | IDeletePopupByIdErrorAction
+  | IDeletePopupByIdAction
+  | IUpdatePopupByIdSuccessAction
+  | IUpdatePopupByIdErrorAction
+  | IUpdatePopupByIdAction
   | ICreatePopupSuccessAction
   | ICreatePopupErrorAction
   | ICreatePopupAction

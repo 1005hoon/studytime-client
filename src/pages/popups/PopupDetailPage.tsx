@@ -7,6 +7,7 @@ import PageHeader from '../../components/page-header';
 import PageLayout from '../../components/page-layout';
 import BasePageLayout from '../../container/layout/BasePageLayout';
 import PopupDetailContainer from '../../container/popups/PopupdetailContainer';
+import UpdatePopupForm from '../../container/popups/UpdatePopupForm';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 
@@ -14,12 +15,15 @@ interface PopupDetailPageProps {}
 
 const PopupDetailPage: React.FC<PopupDetailPageProps> = (props) => {
   const params = useParams();
-  const { handleFetchPopupById } = useActions();
-  const { loading, popup, error } = useTypedSelector((state) => state.popups);
+  const { handleFetchPopupById, handleFetchAllPopups } = useActions();
+  const { loading, popup, eventList, error } = useTypedSelector(
+    (state) => state.popups
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const id = params.id as string;
+    handleFetchAllPopups(1);
     handleFetchPopupById(+id);
   }, []);
 
@@ -42,9 +46,10 @@ const PopupDetailPage: React.FC<PopupDetailPageProps> = (props) => {
           overlayClassName='Overlay'
         >
           <h2>팝업 수정하기</h2>
+          <UpdatePopupForm popup={popup} eventList={eventList} />
         </Modal>
         <PageLayout.Row>
-          <PopupDetailContainer popup={popup} />
+          <PopupDetailContainer popup={popup} eventList={eventList} />
         </PageLayout.Row>
       </PageLayout.Content>
     </BasePageLayout>

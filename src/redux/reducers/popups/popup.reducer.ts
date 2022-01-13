@@ -101,6 +101,27 @@ const reducer = (state = initialState, action: PopupsAction) => {
         error: action.payload,
       };
 
+    case PopupsActionType.UPDATE_POPUP_BY_ID:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case PopupsActionType.UPDATE_POPUP_BY_ID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        popup: action.payload,
+      };
+
+    case PopupsActionType.UPDATE_POPUP_BY_ID_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     default:
       return state;
   }

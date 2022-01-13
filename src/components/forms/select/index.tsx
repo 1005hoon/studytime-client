@@ -4,7 +4,7 @@ import { StyledSelect, StyledSelectContainer } from './styles';
 interface SelectProps {
   value?: string | number;
   name: string;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  onChange?: React.ChangeEventHandler<HTMLSelectElement | HTMLInputElement>;
 }
 interface SelectComposition {}
 

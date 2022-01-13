@@ -1,10 +1,12 @@
 import React from 'react';
 import InputForm from '../../components/forms/input-form';
+import { IEvent } from '../../utils/types/event.interface';
 
 import { IPopup } from '../../utils/types/popup.interface';
 
 interface PopupDetailContainerProps {
   popup: IPopup;
+  eventList: IEvent[];
 }
 
 const PopupDetailContainer: React.FC<PopupDetailContainerProps> = (props) => {
@@ -29,12 +31,23 @@ const PopupDetailContainer: React.FC<PopupDetailContainerProps> = (props) => {
           value={(props.popup.screen as string) === 'event' ? '이벤트' : '공지'}
         />
       </InputForm.Group>
+      {props.popup.targetId && (
+        <InputForm.Group>
+          <label htmlFor=''>연결된 이벤트</label>
+          <input
+            readOnly
+            type='text'
+            value={
+              props.eventList.find((event) => event.id === props.popup.targetId)
+                ?.name
+            }
+          />
+        </InputForm.Group>
+      )}
       {props.popup.url && (
         <InputForm.Group>
           <label htmlFor=''>웹뷰 링크</label>
           <input readOnly type='text' value={props.popup.url as string} />
-          <label htmlFor=''>버튼링크</label>
-          <input readOnly type='text' value={props.popup.url1 as string} />
         </InputForm.Group>
       )}
       {(props.popup.imgUrl as string) && (
