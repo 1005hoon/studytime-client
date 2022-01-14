@@ -122,6 +122,27 @@ const reducer = (state = initialState, action: PopupsAction) => {
         error: action.payload,
       };
 
+    case PopupsActionType.DELETE_POPUP_BY_ID:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case PopupsActionType.DELETE_POPUP_BY_ID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        popup: { ...initialState.popup, isDeleted: 1 },
+      };
+
+    case PopupsActionType.DELETE_POPUP_BY_ID_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     default:
       return state;
   }

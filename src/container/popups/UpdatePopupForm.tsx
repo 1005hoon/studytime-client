@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RoundButton from '../../components/buttons/round-button';
 import InputForm from '../../components/forms/input-form';
@@ -16,8 +16,8 @@ interface UpdatePopupFormProps {
 
 const UpdatePopupForm: React.FC<UpdatePopupFormProps> = (props) => {
   const navigate = useNavigate();
-  const { handleUpdatePopupById } = useActions();
-  const { error, loading } = useTypedSelector((state) => state.popups);
+  const { handleUpdatePopupById, handleDeletePopupById } = useActions();
+  const { error, loading, popup } = useTypedSelector((state) => state.popups);
   const [popupData, setPopupData] = useState({ ...props.popup });
   const [popupImage, setPopupImage] = useState<File>();
   const [imagePreview, setImagePreview] = useState(props.popup.imgUrl);
@@ -62,7 +62,13 @@ const UpdatePopupForm: React.FC<UpdatePopupFormProps> = (props) => {
     handleUpdatePopupById(popupData.id, formData);
   };
 
-  const onPopupDelete = () => {};
+  const onPopupDelete = () => {
+    if (!window.confirm('팝업을 제거할까요?')) {
+      return;
+    }
+
+    handleDeletePopupById(popupData.id);
+  };
 
   const onPopupDataChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value, files } = e.currentTarget;
@@ -89,6 +95,16 @@ const UpdatePopupForm: React.FC<UpdatePopupFormProps> = (props) => {
       </option>
     ));
   };
+
+  useEffect(() => {
+    if (!loading && popup.isDeleted === 1) {
+      navigate('/popups');
+    }
+
+    if (!loading && error) {
+      alert(error);
+    }
+  }, [popup]);
 
   return (
     <InputForm onSubmit={(e) => e.preventDefault()}>

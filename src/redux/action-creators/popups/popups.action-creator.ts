@@ -92,3 +92,17 @@ export const handleUpdatePopupById =
       });
     }
   };
+
+export const handleDeletePopupById =
+  (id: number) => async (dispatch: Dispatch<PopupsAction>) => {
+    dispatch({ type: PopupsActionType.DELETE_POPUP_BY_ID });
+    try {
+      await request('DELETE', `/popups/${id}`);
+      dispatch({ type: PopupsActionType.DELETE_POPUP_BY_ID_SUCCESS });
+    } catch (error) {
+      dispatch({
+        type: PopupsActionType.DELETE_POPUP_BY_ID_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };
