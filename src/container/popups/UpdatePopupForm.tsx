@@ -27,7 +27,7 @@ const UpdatePopupForm: React.FC<UpdatePopupFormProps> = (props) => {
       return alert('팝업 유형을 선택해주세요');
     }
 
-    if (popupData.screen === 'event' && popupData.targetId === -99) {
+    if (popupData.screen === 'event' && popupData.targetId === 0) {
       return alert('이동할 이벤트 페이지를 선택해주세요');
     }
 
@@ -115,6 +115,16 @@ const UpdatePopupForm: React.FC<UpdatePopupFormProps> = (props) => {
           <option value='webView'>웹뷰</option>
         </Select>
       </InputForm.Group>
+      <InputForm.Group>
+        <label htmlFor='description'>팝업 설명</label>
+        <input
+          type='text'
+          name='description'
+          placeholder='팝업에 대한 설명을 입력하세요'
+          value={popupData.description as string}
+          onChange={onPopupDataChange}
+        />
+      </InputForm.Group>
       {popupData.screen === 'event' && (
         <InputForm.Group>
           <label htmlFor='targetId'>이동할 이벤트 페이지 </label>
@@ -139,16 +149,7 @@ const UpdatePopupForm: React.FC<UpdatePopupFormProps> = (props) => {
           />
         </InputForm.Group>
       )}
-      <InputForm.Group>
-        <label htmlFor='description'>팝업 설명</label>
-        <input
-          type='text'
-          name='description'
-          placeholder='팝업에 대한 설명을 입력하세요'
-          value={popupData.description as string}
-          onChange={onPopupDataChange}
-        />
-      </InputForm.Group>
+
       <InputForm.Group>
         <label htmlFor='image'>이미지 등록</label>
         <input
