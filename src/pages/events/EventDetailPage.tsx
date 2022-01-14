@@ -12,6 +12,7 @@ import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { IEventDetail } from '../../utils/types/event-detail.interface';
 import UpdateEventForm from '../../container/events/UpdateEventForm';
+import EventInformationContainer from '../../container/events/EventInformationContainer';
 
 interface EventDetailPageProps {}
 
@@ -105,6 +106,13 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
     handleFetchEventDetailsByEventId(+id);
   }, []);
 
+  useEffect(() => {
+    if (!loading && event.isDeleted === 1) {
+      navigate('/events');
+      setIsModalOpen(() => false);
+    }
+  }, [event]);
+
   return (
     <BasePageLayout>
       <PageHeader title={`${event.name} 관리`}>
@@ -126,24 +134,30 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
           <h2>이벤트 수정하기</h2>
           <UpdateEventForm event={event} />
         </Modal>
+
         {event.id !== 0 && event.isDeleted === 0 && (
-          <PageLayout.Row>
-            <PageLayout.Column title={`${event.name} 상세정보 관리`}>
-              <EventDetailsList
-                details={detailList}
-                selectedEvent={event.name}
-                onClick={handleNavigateDetail}
-              />
-            </PageLayout.Column>
-            <PageLayout.Column title={`${event.name} 상세정보 생성`}>
-              <CreateEventDetailForm
-                imagePreview={imagePreview}
-                eventDetail={detailData}
-                onChange={onChangeDetailData}
-                onSubmit={onSubmit}
-              />
-            </PageLayout.Column>
-          </PageLayout.Row>
+          <>
+            <PageLayout.Row>
+              <EventInformationContainer event={event} />
+            </PageLayout.Row>
+            <PageLayout.Row>
+              <PageLayout.Column title={`${event.name} 상세정보 관리`}>
+                <EventDetailsList
+                  details={detailList}
+                  selectedEvent={event.name}
+                  onClick={handleNavigateDetail}
+                />
+              </PageLayout.Column>
+              <PageLayout.Column title={`${event.name} 상세정보 생성`}>
+                <CreateEventDetailForm
+                  imagePreview={imagePreview}
+                  eventDetail={detailData}
+                  onChange={onChangeDetailData}
+                  onSubmit={onSubmit}
+                />
+              </PageLayout.Column>
+            </PageLayout.Row>
+          </>
         )}
       </PageLayout.Content>
     </BasePageLayout>
