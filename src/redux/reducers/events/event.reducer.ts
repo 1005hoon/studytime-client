@@ -207,6 +207,26 @@ const reducer = (state: IEventState = initialState, action: EventActions) => {
         eventDetail: action.payload,
       };
 
+    case EventAcionType.DELETE_EVENT_DETAIL:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case EventAcionType.DELETE_EVENT_DETAIL_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case EventAcionType.DELETE_EVENT_DETAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        eventDetail: { ...initialState.eventDetail, isDeleted: 1 },
+      };
+
     default:
       return state;
   }

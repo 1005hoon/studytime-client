@@ -192,3 +192,18 @@ export const handleDeleteEvent =
       });
     }
   };
+
+export const handleDeleteEventDetail =
+  (detailId: number) => async (dispatch: Dispatch<EventActions>) => {
+    dispatch({ type: EventAcionType.DELETE_EVENT_DETAIL });
+
+    try {
+      await request('DELETE', `/event-details/${detailId}`);
+      dispatch({ type: EventAcionType.DELETE_EVENT_DETAIL_SUCCESS });
+    } catch (error) {
+      dispatch({
+        type: EventAcionType.DELETE_EVENT_DETAIL_ERROR,
+        payload: axiosErrorHandler(error as AxiosError),
+      });
+    }
+  };

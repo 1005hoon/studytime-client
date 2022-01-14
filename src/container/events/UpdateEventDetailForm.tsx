@@ -10,6 +10,7 @@ interface UpdateEventDetailProps {
   imagePreview: string;
   onChange: React.ChangeEventHandler<HTMLSelectElement | HTMLInputElement>;
   onUpdate?: () => void;
+  onDelete?: () => void;
 }
 
 const UpdateEventDetailForm: React.FC<UpdateEventDetailProps> = (props) => {
@@ -102,7 +103,9 @@ const UpdateEventDetailForm: React.FC<UpdateEventDetailProps> = (props) => {
       )}
 
       <InputForm.Group justify>
-        <RoundButton width='100%'>삭제하기</RoundButton>
+        <RoundButton width='100%' onClick={props.onDelete}>
+          삭제하기
+        </RoundButton>
         <RoundButton width='100%' primary onClick={props.onUpdate}>
           수정하기
         </RoundButton>

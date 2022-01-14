@@ -119,6 +119,19 @@ interface IDeleteEventErrorAction {
   payload: string;
 }
 
+interface IDeleteEventDetailAction {
+  type: EventAcionType.DELETE_EVENT_DETAIL;
+}
+
+interface IDeleteEventDetailSuccessAction {
+  type: EventAcionType.DELETE_EVENT_DETAIL_SUCCESS;
+}
+
+interface IDeleteEventDetailErrorAction {
+  type: EventAcionType.DELETE_EVENT_DETAIL_ERROR;
+  payload: string;
+}
+
 export type EventActions =
   | IFetchEventDetailByDetailIdAction
   | IFetchEventDetailByDetailIdErrorAction
@@ -126,6 +139,9 @@ export type EventActions =
   | IFetchEventDetailByEventIdAction
   | IFetchEventDetailByEventIdErrorAction
   | IFetchEventDetailByEventIdSuccessAction
+  | IDeleteEventDetailAction
+  | IDeleteEventDetailErrorAction
+  | IDeleteEventDetailSuccessAction
   | IDeleteEventAction
   | IDeleteEventErrorAction
   | IDeleteEventSuccessAction

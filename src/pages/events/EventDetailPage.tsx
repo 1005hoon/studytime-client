@@ -141,14 +141,14 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
               <EventInformationContainer event={event} />
             </PageLayout.Row>
             <PageLayout.Row>
-              <PageLayout.Column title={`${event.name} 상세정보 관리`}>
+              <PageLayout.Column title='등록된 이벤트 상세정보 관리'>
                 <EventDetailsList
                   details={detailList}
                   selectedEvent={event.name}
                   onClick={handleNavigateDetail}
                 />
               </PageLayout.Column>
-              <PageLayout.Column title={`${event.name} 상세정보 생성`}>
+              <PageLayout.Column title='새로운 이벤트 상세정보 생성'>
                 <CreateEventDetailForm
                   imagePreview={imagePreview}
                   eventDetail={detailData}

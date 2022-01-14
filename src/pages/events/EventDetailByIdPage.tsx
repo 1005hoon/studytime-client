@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Modal from 'react-modal';
 import RoundButton from '../../components/buttons/round-button';
 import Loading from '../../components/loading';
@@ -16,9 +16,13 @@ interface EventDetailByIdPageProps {}
 
 const EventDetailByIdPage: React.FC<EventDetailByIdPageProps> = (props) => {
   const param = useParams();
-  const { handleUpdateEventDetail, handleFetchEventDetailByDetailId } =
-    useActions();
-  const { loading, error, eventDetail } = useTypedSelector(
+  const navigate = useNavigate();
+  const {
+    handleUpdateEventDetail,
+    handleFetchEventDetailByDetailId,
+    handleDeleteEventDetail,
+  } = useActions();
+  const { loading, error, eventDetail, event } = useTypedSelector(
     (state) => state.events
   );
 
@@ -61,7 +65,12 @@ const EventDetailByIdPage: React.FC<EventDetailByIdPageProps> = (props) => {
     handleUpdateEventDetail(eventDetail.id, formData);
   };
 
-  const onHandleDelete = () => {};
+  const onHandleDelete = () => {
+    if (!window.confirm('정말 삭제할까요?')) {
+      return;
+    }
+    handleDeleteEventDetail(eventDetail.id);
+  };
 
   const onChangeDetailData: React.ChangeEventHandler<HTMLInputElement> = (
     e
@@ -81,6 +90,11 @@ const EventDetailByIdPage: React.FC<EventDetailByIdPageProps> = (props) => {
     if (!loading && eventDetail.description) {
       setDetailData((prev) => ({ ...prev, ...eventDetail }));
       setImagePreview(() => eventDetail.imgUrl);
+      setIsModalOpen(() => false);
+    }
+
+    if (!loading && eventDetail.isDeleted === 1) {
+      navigate(-1);
     }
   }, [eventDetail]);
 
@@ -113,6 +127,7 @@ const EventDetailByIdPage: React.FC<EventDetailByIdPageProps> = (props) => {
             imagePreview={imagePreview}
             onChange={onChangeDetailData}
             onUpdate={onHandleUpdate}
+            onDelete={onHandleDelete}
           />
         </Modal>
         <PageLayout.Row>
