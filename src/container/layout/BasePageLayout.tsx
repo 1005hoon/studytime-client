@@ -30,7 +30,7 @@ const BasePageLayout: React.FC<BasePageLayoutProps> = (props) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [data, loading]);
 
   return (
     <PageLayout>
