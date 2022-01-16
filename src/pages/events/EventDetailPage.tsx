@@ -111,6 +111,10 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
       navigate('/events');
       setIsModalOpen(() => false);
     }
+
+    if (!loading && event.name) {
+      setIsModalOpen(() => false);
+    }
   }, [event]);
 
   return (

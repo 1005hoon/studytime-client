@@ -23,6 +23,7 @@ const initialState: IEventState = {
   },
   eventDetail: {
     id: 0,
+    inProgress: false,
     eventId: 0,
     type: '',
     imgUrl: '',

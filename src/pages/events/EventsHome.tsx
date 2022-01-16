@@ -94,6 +94,7 @@ const EventsHome: React.FC<EventsHomeProps> = (props) => {
   return (
     <BasePageLayout>
       {loading ? <Loading /> : <Loading.ReleaseBody />}
+      {error && <p>{error}</p>}
       <PageHeader title='이벤트 관리'>
         <SearchInput
           ref={searchRef}

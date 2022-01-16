@@ -1,6 +1,7 @@
 export interface IEventDetail {
-  [key: string]: string | number | null | Date;
+  [key: string]: string | number | null | Date | boolean;
   id: number;
+  inProgress: boolean;
   eventId: number;
   type: string | null;
   imgUrl: string;
