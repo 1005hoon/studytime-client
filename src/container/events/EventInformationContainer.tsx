@@ -1,9 +1,11 @@
 import React from 'react';
 import InputForm from '../../components/forms/input-form';
+import { IEventDetail } from '../../utils/types/event-detail.interface';
 import { IEvent } from '../../utils/types/event.interface';
 
 interface EventInformationContainerProps {
   event: IEvent;
+  details: IEventDetail[];
 }
 
 const EventInformationContainer: React.FC<EventInformationContainerProps> = (
@@ -24,7 +26,15 @@ const EventInformationContainer: React.FC<EventInformationContainerProps> = (
       </InputForm.Group>
       <InputForm.Group>
         <label htmlFor=''>진행여부</label>
-        <input readOnly type='text' value='진행여부 필드 추가 필요합니다 ' />
+        <input
+          readOnly
+          type='text'
+          value={
+            props.details.filter((detail) => detail.inProgress).length
+              ? '진행중'
+              : '종료'
+          }
+        />
       </InputForm.Group>
     </InputForm>
   );

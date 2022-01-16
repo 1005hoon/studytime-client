@@ -146,7 +146,7 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
         {event.id !== 0 && event.isDeleted === 0 && (
           <>
             <PageLayout.Row>
-              <EventInformationContainer event={event} />
+              <EventInformationContainer event={event} details={detailList} />
             </PageLayout.Row>
             <PageLayout.Row>
               <PageLayout.Column title='등록된 이벤트 상세정보 관리'>
