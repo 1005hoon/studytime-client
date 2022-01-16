@@ -27,6 +27,12 @@ const PopupDetailPage: React.FC<PopupDetailPageProps> = (props) => {
     handleFetchPopupById(+id);
   }, []);
 
+  useEffect(() => {
+    if (!loading && !error && popup.title) {
+      setIsModalOpen(() => false);
+    }
+  }, [popup]);
+
   return (
     <BasePageLayout>
       <PageHeader title={`${popup.description || '팝업 상세정보'} 관리`}>

@@ -23,6 +23,10 @@ const UpdatePopupForm: React.FC<UpdatePopupFormProps> = (props) => {
   const [imagePreview, setImagePreview] = useState(props.popup.imgUrl);
 
   const onPopupUpdate = () => {
+    if (!popupData.title) {
+      return alert('팝업 제목을 입력하세요');
+    }
+
     if (!popupData.screen) {
       return alert('팝업 유형을 선택해주세요');
     }
@@ -108,6 +112,16 @@ const UpdatePopupForm: React.FC<UpdatePopupFormProps> = (props) => {
 
   return (
     <InputForm onSubmit={(e) => e.preventDefault()}>
+      <InputForm.Group>
+        <label htmlFor='title'>팝업 제목</label>
+        <input
+          type='title'
+          name='title'
+          placeholder='팝업 제목'
+          value={popupData.title as string}
+          onChange={onPopupDataChange}
+        />
+      </InputForm.Group>
       <InputForm.Group>
         <label htmlFor='useYn'>팝업 사용여부</label>
         <Select
