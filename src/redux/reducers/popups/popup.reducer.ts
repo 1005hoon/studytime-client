@@ -24,6 +24,7 @@ const initialState: IPopupState = {
   },
   popup: {
     id: 0,
+    title: '',
     screen: '',
     targetId: 0,
     imgUrl: '',

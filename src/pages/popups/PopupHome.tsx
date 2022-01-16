@@ -32,6 +32,7 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
   const [popupData, setPopupdata] = useState<Partial<IPopup>>({
     screen: '',
     targetId: 0,
+    title: '',
     url: '',
     description: '',
   });
@@ -64,6 +65,9 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
       return alert('팝업 유형을 선택해주세요');
     }
 
+    if (!popupData.title) {
+      return alert('팝업 제목을 입력하세요');
+    }
     if (popupData.screen === 'event' && popupData.targetId === 0) {
       return alert('이동할 이벤트 페이지를 선택해주세요');
     }

@@ -25,6 +25,16 @@ const CreatePopupForm: React.FC<CreatePopupFormProps> = (props) => {
   return (
     <InputForm onSubmit={props.onSubmit}>
       <InputForm.Group>
+        <label htmlFor='title'>팝업 제목</label>
+        <input
+          type='text'
+          name='title'
+          placeholder='팝업 제목을 입력하세요'
+          value={props.popupData.title}
+          onChange={props.onChange}
+        />
+      </InputForm.Group>
+      <InputForm.Group>
         <label htmlFor='screen'>팝업 유형</label>
         <Select
           name='screen'
@@ -65,7 +75,7 @@ const CreatePopupForm: React.FC<CreatePopupFormProps> = (props) => {
         <input
           type='text'
           name='description'
-          placeholder='팝업에 대한 설명을 입력하세요'
+          placeholder='팝업 관리를 위해 설명을 입력하세요'
           value={props.popupData.description as string}
           onChange={props.onChange}
         />
