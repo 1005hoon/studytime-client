@@ -111,7 +111,7 @@ export const handleCreateEventDetail =
     try {
       const { data } = await request<IEventDetail>(
         'POST',
-        `/events/${eventId}/details`,
+        'event-details',
         {},
         dto
       );
