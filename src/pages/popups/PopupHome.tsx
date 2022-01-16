@@ -40,7 +40,7 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
   const [imagePreview, setImagePreview] = useState('');
 
   const { handlePopupCreate } = useActions();
-  const { loading, popupList, error } = useTypedSelector(
+  const { loading, popupList, popup, error } = useTypedSelector(
     (state) => state.popups
   );
 
@@ -61,13 +61,14 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
+    if (!popupData.title) {
+      return alert('팝업 제목을 입력하세요');
+    }
+
     if (!popupData.screen) {
       return alert('팝업 유형을 선택해주세요');
     }
 
-    if (!popupData.title) {
-      return alert('팝업 제목을 입력하세요');
-    }
     if (popupData.screen === 'event' && popupData.targetId === 0) {
       return alert('이동할 이벤트 페이지를 선택해주세요');
     }
@@ -122,12 +123,25 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
   }, [popupList]);
 
   useEffect(() => {
+    if (!loading && popup.title) {
+      setPopupdata(() => ({
+        screen: '',
+        targetId: 0,
+        title: '',
+        url: '',
+        description: '',
+      }));
+    }
+  }, [popup]);
+
+  useEffect(() => {
     handleFetchAllPopups(1);
   }, []);
 
   return (
     <BasePageLayout>
       {loading ? <Loading /> : <Loading.ReleaseBody />}
+      {error && <p>{error}</p>}
       <PageHeader title='팝업 관리'>
         <SearchInput
           ref={searchRef}

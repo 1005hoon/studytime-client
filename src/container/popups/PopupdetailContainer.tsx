@@ -13,7 +13,11 @@ const PopupDetailContainer: React.FC<PopupDetailContainerProps> = (props) => {
   return (
     <InputForm width='600px'>
       <InputForm.Group>
-        <h2>{props.popup.description} 정보</h2>
+        <h1>{props.popup.title} 정보</h1>
+      </InputForm.Group>
+      <InputForm.Group>
+        <label htmlFor=''>설명</label>
+        <input readOnly type='text' value={props.popup.description} />
       </InputForm.Group>
       <InputForm.Group>
         <label htmlFor=''>생성일</label>

@@ -53,7 +53,7 @@ export const handlePopupCreate =
     try {
       const { data } = await request<IPopup>('PUT', '/popups', {}, formData);
       dispatch({
-        type: PopupsActionType.CREATE_POPUP,
+        type: PopupsActionType.CREATE_POPUP_SUCCESS,
         payload: data,
       });
 
