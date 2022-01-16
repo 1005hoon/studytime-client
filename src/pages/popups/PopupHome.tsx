@@ -51,6 +51,7 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
 
   const handlePopupSearch: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
+      alert('아직 미구현입니다.. ㅎㅎ =) ');
     }
   };
 
@@ -143,12 +144,12 @@ const PopupHome: React.FC<PopupHomeProps> = (props) => {
       {loading ? <Loading /> : <Loading.ReleaseBody />}
       {error && <p>{error}</p>}
       <PageHeader title='팝업 관리'>
-        <SearchInput
+        {/* <SearchInput
           ref={searchRef}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onKeyPress={handlePopupSearch}
-        />
+        /> */}
       </PageHeader>
       <PageLayout.Content>
         <PageLayout.Row>
