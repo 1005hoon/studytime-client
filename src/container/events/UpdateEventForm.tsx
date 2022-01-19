@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RoundButton from '../../components/buttons/round-button';
 import InputForm from '../../components/forms/input-form';
+import Select from '../../components/forms/select';
 import Loading from '../../components/loading';
 import { useActions } from '../../hooks/use-actions';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
@@ -16,8 +17,10 @@ const UpdateEventForm: React.FC<UpdateEventFormProps> = (props) => {
   const [eventData, setEventData] = useState({ ...props.event });
   const { handleUpdateEvent, handleDeleteEvent } = useActions();
   const { loading, error, event } = useTypedSelector((state) => state.events);
+
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, name } = e.target;
+
     setEventData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -58,6 +61,17 @@ const UpdateEventForm: React.FC<UpdateEventFormProps> = (props) => {
           value={eventData.name}
           onChange={onChange}
         />
+      </InputForm.Group>
+      <InputForm.Group>
+        <label htmlFor='inProgress'>진행여부</label>
+        <Select
+          name='inProgress'
+          value={`${eventData.inProgress}`}
+          onChange={onChange}
+        >
+          <option value='true'>진행중</option>
+          <option value='false'>진행종료</option>
+        </Select>
       </InputForm.Group>
       <InputForm.Group justify>
         <RoundButton width='100%' primary onClick={onDelete}>

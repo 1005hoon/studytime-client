@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputForm from '../../components/forms/input-form';
 import { IEventDetail } from '../../utils/types/event-detail.interface';
 import { IEvent } from '../../utils/types/event.interface';
@@ -29,11 +29,7 @@ const EventInformationContainer: React.FC<EventInformationContainerProps> = (
         <input
           readOnly
           type='text'
-          value={
-            props.details.filter((detail) => detail.inProgress).length
-              ? '진행중'
-              : '종료'
-          }
+          value={props.event.inProgress ? '진행중' : '종료'}
         />
       </InputForm.Group>
     </InputForm>
