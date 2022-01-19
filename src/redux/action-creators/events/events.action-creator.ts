@@ -19,6 +19,7 @@ export const handleFetchAllEvents =
         '/events',
         { search, page }
       );
+
       dispatch({ type: EventAcionType.FETCH_EVENTS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({

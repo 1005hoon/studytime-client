@@ -18,12 +18,12 @@ const initialState: IEventState = {
   event: {
     id: 0,
     name: '',
+    inProgress: false,
     createdAt: new Date(),
     isDeleted: 0,
   },
   eventDetail: {
     id: 0,
-    inProgress: false,
     eventId: 0,
     type: '',
     imgUrl: '',

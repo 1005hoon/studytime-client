@@ -26,17 +26,6 @@ const CreateEventDetailForm: React.FC<CreateEventDetailFormProps> = (props) => {
         </Select>
       </InputForm.Group>
       <InputForm.Group>
-        <label htmlFor='inProgress'>진행여부</label>
-        <Select
-          name='inProgress'
-          value={props.eventDetail.inProgress === true ? 1 : 0}
-          onChange={props.onChange}
-        >
-          <option value={1}>진행중</option>
-          <option value={0}>종료</option>
-        </Select>
-      </InputForm.Group>
-      <InputForm.Group>
         <label htmlFor='description'>상세내용</label>
         <input
           type='text'

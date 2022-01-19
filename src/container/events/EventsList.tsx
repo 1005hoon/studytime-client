@@ -1,9 +1,9 @@
 import React from 'react';
 import ListTable from '../../components/list-table';
-import { IEvents } from '../../utils/types/events.interface';
+import { IEvent } from '../../utils/types/event.interface';
 
 interface EventsListProps {
-  events: IEvents[];
+  events: IEvent[];
   onClick: (id: number) => void;
 }
 

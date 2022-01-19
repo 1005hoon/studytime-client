@@ -1,6 +1,5 @@
 import { IEventDetail } from '../../../utils/types/event-detail.interface';
 import { IEvent } from '../../../utils/types/event.interface';
-import { IEvents } from '../../../utils/types/events.interface';
 import { IPaginatedResult } from '../../../utils/types/paginated-result.interface';
 
 import { EventAcionType } from '../../action-types/events/events.action-type';
@@ -11,7 +10,7 @@ interface IFetchEventsAction {
 
 interface IFetchEventsSuccessAction {
   type: EventAcionType.FETCH_EVENTS_SUCCESS;
-  payload: IPaginatedResult<IEvents>;
+  payload: IPaginatedResult<IEvent>;
 }
 
 interface IFetchEventsErrorAction {

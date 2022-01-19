@@ -30,7 +30,6 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
   const [detailData, setDetailData] = useState<Partial<IEventDetail>>({
     type: '',
     eventId: 0,
-    inProgress: true,
     url1: '',
     urlButtonName1: '',
     url2: '',
@@ -92,9 +91,6 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
       const file = (files as FileList)[0];
       setDetailImage(() => file);
       setImagePreview(() => URL.createObjectURL(file));
-    } else if (name === 'inProgress') {
-      const result = value === '0' ? false : true;
-      setDetailData((detail) => ({ ...detail, [name]: result }));
     } else {
       setDetailData((detail) => ({ ...detail, [name]: value }));
     }
