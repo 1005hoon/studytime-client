@@ -148,7 +148,6 @@ const EventDetailPage: React.FC<EventDetailPageProps> = (props) => {
               <PageLayout.Column title='등록된 이벤트 상세정보 관리'>
                 <EventDetailsList
                   details={detailList}
-                  selectedEvent={event.name}
                   onClick={handleNavigateDetail}
                 />
               </PageLayout.Column>

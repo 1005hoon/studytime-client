@@ -4,13 +4,11 @@ import { IEventDetail } from '../../utils/types/event-detail.interface';
 
 interface EventDetailsListProps {
   details?: IEventDetail[];
-  selectedEvent?: string;
   onClick: (id: number) => void;
 }
 
 const EventDetailsList: React.FC<EventDetailsListProps> = ({
   details,
-  selectedEvent,
   onClick,
 }) => {
   const renderEventDetailLists = () =>
@@ -25,9 +23,6 @@ const EventDetailsList: React.FC<EventDetailsListProps> = ({
         <ListTable.Data>
           {new Date(event.createdAt).toLocaleDateString()}
         </ListTable.Data>
-        <ListTable.Data>
-          {event.isDeleted === 0 ? '진행중' : '종료'}
-        </ListTable.Data>
       </ListTable.Row>
     ));
 
@@ -39,7 +34,6 @@ const EventDetailsList: React.FC<EventDetailsListProps> = ({
             <ListTable.Category width='30%'>설명</ListTable.Category>
             <ListTable.Category width='15%'>유형</ListTable.Category>
             <ListTable.Category width='20%'>생성일</ListTable.Category>
-            <ListTable.Category width='20%'>진행여부</ListTable.Category>
           </ListTable.Row>
         </ListTable.Header>
         <ListTable.Body>{renderEventDetailLists()}</ListTable.Body>
